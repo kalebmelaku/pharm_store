@@ -13,6 +13,7 @@ require './backend/db.php';
 	<title>Pharmacy</title>
 	<link rel="icon" href="favicon.ico">
 	<link href="./style/style.css" rel="stylesheet">
+	<link href="./style/alert.css" rel="stylesheet">
 </head>
 
 <body x-data="{ page: 'home', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }" x-init="
@@ -26,6 +27,27 @@ require './backend/db.php';
 		<div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 			<?php include './includes/header.php'; ?>
 			<main>
+			<div class="alert-box absolute flex border-l-6 border-primary bg-danger px-7 py-8 shadow-md dark:bg-danger text-white md:p-9 align-center justify-center" id="alert-box">
+
+<div class="w-full">
+	<h5 class="mb-3 font-bold text-white">
+		Update Info!
+	</h5>
+	<input type="hidden" name="" id="status" value="<?php echo @$_REQUEST['status']; ?>">
+	<ul>
+		<li class="leading-relaxed text-white">
+			<p id="error-text">
+				<?php
+				$msg = @$_REQUEST['msg'];
+				$lout = @$_REQUEST['lout'];
+				echo $msg;
+				echo $lout;
+				?>
+			</p>
+		</li>
+	</ul>
+</div>
+</div>
 				<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
 					<!-- component -->
 					
@@ -90,7 +112,7 @@ require './backend/db.php';
 							if (empty($search)) {
 								$sql = $conn->query('SELECT * FROM `meds` ORDER BY `name` ASC LIMIT ' . $this_page_first_result . ',' . $results_per_page);
 								while ($row = $sql->fetch_assoc()) {
-									$id = $row['id'];
+									$id = $row['med_id'];
 									$name = $row['name'];
 									$type = $row['type'];
 									$amount = $row['amount'];
@@ -103,11 +125,11 @@ require './backend/db.php';
 								$sql = $conn->query("SELECT * FROM `meds` WHERE `name` LIKE '%$search%' ORDER BY `name` ASC");
 								if ($sql->num_rows > 0) {
 									while ($row = $sql->fetch_assoc()) {
-										$id = $row['id'];
+										$id = $row['med_id'];
 										$name = $row['name'];
 										$type = $row['type'];
 										$amount = $row['amount'];
-										$purchase = $row['cost'];
+										// $purchase = $row['cost'];
 										$sell_price = $row['price'];
 										$reg_date = $row['date'];
 										$exp_date = $row['exdate'];
@@ -138,7 +160,7 @@ require './backend/db.php';
 								for ($page = 1; $page <= $number_of_pages; $page++) {
 								?>
 									<li class="page-item">
-										<a class="page-link hover:text-primary hover:bg-gray-200 relative block rounded border-0 bg-transparent py-1.5 px-3 text-boxdark-2 outline-none transition-all duration-300 focus:shadow-none dark:text-whiter" href="home.php?page=<?php echo $page; ?>"><?php echo $page; ?></a>
+										<a class="page-link hover:text-primary hover:bg-gray-200 relative block rounded border-0 bg-transparent py-1.5 px-3 text-boxdark-2 outline-none transition-all duration-300 focus:shadow-none dark:text-whiter" href="pharmacy.php?page=<?php echo $page; ?>"><?php echo $page; ?></a>
 									</li>
 								<?php
 								}
@@ -170,7 +192,7 @@ require './backend/db.php';
 			table.classList.remove('hidden');
 		}
 	</script>
-
+	<script src="./script/app.js"></script>
 </body>
 
 </html>
