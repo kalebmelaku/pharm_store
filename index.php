@@ -77,28 +77,28 @@
 			</header>
 
 			<main>
+			<div class="alert-box absolute flex border-l-6 border-primary bg-danger px-7 py-8 shadow-md dark:bg-danger text-white md:p-9 align-center justify-center" id="alert-box">
+
+					<div class="w-full">
+						<h5 class="mb-3 font-bold text-white">
+							Login Status!
+						</h5>
+						<ul>
+							<li class="leading-relaxed text-white">
+								<p id="error-text">
+									<?php
+										$msg = @$_REQUEST['msg'];
+										$lout = @$_REQUEST['lout'];
+										echo $msg;
+										echo $lout;
+									?>
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
 				<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
 					<div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ">
-						<div class="alert-box flex border-l-6 border-primary bg-danger  px-7 py-8 shadow-md dark:bg-danger text-white md:p-9 align-center justify-center" id="alert-box">
-
-							<div class="w-full">
-								<h5 class="mb-3 font-bold text-white">
-									Login Status!
-								</h5>
-								<ul>
-									<li class="leading-relaxed text-white">
-										<p id="error-text">
-											<?php
-												$msg = @$_REQUEST['msg'];
-												$lout = @$_REQUEST['lout'];
-												echo $msg;
-												echo $lout;
-											?>
-										</p>
-									</li>
-								</ul>
-							</div>
-						</div>
 						<div class="flex flex-wrap items-center">
 							<div class="hidden w-full xl:block xl:w-1/2">
 								<div class="py-17.5 px-26 text-center">
