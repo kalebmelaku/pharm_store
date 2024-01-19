@@ -43,9 +43,6 @@ require './backend/db.php';
 									Purchase $
 								</th>
 								<th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
-									Selling $
-								</th>
-								<th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
 									Reg Date
 								</th>
 								<th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
