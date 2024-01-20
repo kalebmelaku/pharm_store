@@ -141,6 +141,80 @@ $payStatus = $rs['status']
 					}
 					?>
 				</div>
+				<!-- Main modal -->
+				<div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+					<div class="relative p-4 w-full max-w-2xl max-h-full">
+						<!-- Modal content -->
+						<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+							<!-- Modal header -->
+							<div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+								<h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+									Invoice Payment
+								</h3>
+							</div>
+							<!-- Modal body -->
+							<div class="p-4 md:p-5 space-y-4">
+								<form action="./backend/updatePharm.php" method="POST">
+									<div class="p-6.5">
+										<div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+											<div class="w-full xl:w-1/2">
+												<label class="mb-2.5 block text-black dark:text-white">
+													Name
+												</label>
+												<input readonly required id="invoiceName" name="name" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input readonly dark:focus:border-primary" />
+											</div>
+											<div class="w-full xl:w-1/2">
+												<label class="mb-2.5 block text-black dark:text-white">
+													Invoice Number
+												</label>
+												<input readonly required id="invoiceInput" name="invoiceNumber" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+											</div>
+										</div>
+										<div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+											<div class="w-full xl:w-1/2">
+												<label class="mb-2.5 block text-black dark:text-white">
+													Total Price
+												</label>
+												<input required readonly id="invoiceTotal" name="price" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+											</div>
+											<div class="w-full xl:w-1/2">
+												<label class="mb-3 block text-sm font-medium text-black dark:text-white">
+													Payment Method
+												</label>
+												<div>
+													<div class="relative z-20 bg-white dark:bg-form-input">
+														<select class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" id="paymentMethod" name="paymentMethod">
+															<option value="cash" disabled selected>Select Payment Method</option>
+															<option value="cash">Cash</option>
+															<option value="ebirr">Ebirr</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="mb-4.5 flex flex-col gap-6 xl:flex-row hidden" id="refCont">
+											<div class="w-full">
+												<label class="mb-2.5 block text-black dark:text-white">
+													Reference Number
+												</label>
+												<input required id="referenceNo" name="referenceNo" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input readonly dark:focus:border-primary" value="" />
+											</div>
+										</div>
+										<div class="mb-2 flex flex-col gap-6 xl:flex-row">
+											<input type="hidden" name="med_id" value="">
+											<div class="w-full">
+												<label class="mb-2.5 block text-black dark:text-white invisible">
+													btn
+												</label>
+												<input type="submit" value="Pay" name="updateBtn" class="w-full bg-primary hover:bg-secondary hover:pointer-events-auto rounded text-white py-3 px-5 font-medium outline-none transition" />
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 
 			</main>
 		</div>
@@ -153,12 +227,44 @@ $payStatus = $rs['status']
 	<script>
 		const table = document.querySelector('table');
 		const searchResult = document.getElementById('searchResult');
-
+		const invoiceInput = document.getElementById('invoiceInput');
+		const invoiceName = document.getElementById('invoiceName');
+		const invoiceTotal = document.getElementById('invoiceTotal');
+		const referenceNo = document.getElementById('referenceNo');
+		const refCont = document.getElementById('refCont');
+		const paymentMethod = document.getElementById('paymentMethod');
 		if (table.lastElementChild.innerText == '') {
 			table.classList.add('hidden');
 		} else {
 			table.classList.remove('hidden');
 		}
+
+		function modal(id, name, total) {
+			invoiceInput.value = id;
+			invoiceName.value = name;
+			invoiceTotal.value = total;
+
+		}
+
+		paymentMethod.addEventListener('change', (e) => {
+			if (e.target.value != 'cash') {
+				refCont.classList.remove('hidden')
+			} else {
+				refCont.classList.add('hidden')
+			}
+			if (refCont.classList.contains('hidden')) {
+				referenceNo.removeAttribute('required')
+			} else {
+				referenceNo.setAttribute('required', true)
+
+			}
+		})
+
+		// window.addEventListener('DOMContentLoaded',()=>{
+		// 	if(paymentMethod.value != 'cash'){
+		// 		refCont.classList.add('hidden')
+		// 	}
+		// })
 	</script>
 </body>
 
