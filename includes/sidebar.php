@@ -40,7 +40,11 @@
 							} else {
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
-					<a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4" href="./home.php">
+					<a class="<?php if ($page == 'home') {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} else {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} ?>" href="./home.php">
 						<i class="fa-solid fa-warehouse"></i>
 						Inventory
 
@@ -51,7 +55,11 @@
 							} else {
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
-					<a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4" href="./pharmacy.php">
+					<a class="<?php if ($page == 'pharmacy') {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} else {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} ?>" href="./pharmacy.php">
 					<i class="fa-solid fa-prescription-bottle-medical"></i>
 						Pharmacy
 
@@ -62,7 +70,11 @@
 							} else {
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
-					<a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4" href="./expired.php">
+					<a class="<?php if ($page == 'expired') {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} else {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} ?>" href="./expired.php">
 						<i class="fa-solid fa-calendar-xmark"></i>
 						Expiring Soon
 
@@ -73,29 +85,41 @@
 							} else {
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
-					<a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4" href="./suppliers.php">
+					<a class="<?php if ($page == 'suppliers') {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} else {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} ?>" href="./suppliers.php">
 						<i class="fa-solid fa-truck-field"></i>
 						Suppliers
 
 					</a>
 				</li>
-				<li class="<?php if ($page == 'unpaid') {
+				<!-- <li class="<?php if ($page == 'unpaid') {
 								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 							} else {
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
-					<a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4" href="./unpaid.php">
+					<a class="<?php if ($page == 'unpaid') {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} else {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} ?>" href="./unpaid.php">
 						<i class="fa-solid fa-file-invoice"></i>
 						Unpaid
 
 					</a>
-				</li>
+				</li> -->
 				<li class="<?php if ($page == 'settings') {
 								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 							} else {
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
-					<a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4" href="./settings.php">
+					<a class="<?php if ($page == 'settings') {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} else {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} ?>" href="./settings.php">
 						<i class="fa-solid fa-gear"></i>
 						Settings
 
@@ -106,7 +130,11 @@
 							} else {
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
-					<a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4" href="./backend/logout.php">
+					<a class="<?php if ($page == 'logout') {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} else {
+								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+							} ?>" href="./backend/logout.php">
 						<i class="fa-solid fa-right-from-bracket"></i>
 						Logout
 
