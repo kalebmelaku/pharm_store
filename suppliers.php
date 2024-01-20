@@ -154,7 +154,7 @@ $payStatus = $rs['status']
 							</div>
 							<!-- Modal body -->
 							<div class="p-4 md:p-5 space-y-4">
-								<form action="./backend/updatePharm.php" method="POST">
+								<form action="./backend/payInvoice.php" method="POST">
 									<div class="p-6.5">
 										<div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
 											<div class="w-full xl:w-1/2">
@@ -183,7 +183,7 @@ $payStatus = $rs['status']
 												</label>
 												<div>
 													<div class="relative z-20 bg-white dark:bg-form-input">
-														<select class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" id="paymentMethod" name="paymentMethod">
+														<select class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" id="paymentMethod" name="paymentMethod" required>
 															<option value="cash" disabled selected>Select Payment Method</option>
 															<option value="cash">Cash</option>
 															<option value="ebirr">Ebirr</option>
@@ -206,7 +206,7 @@ $payStatus = $rs['status']
 												<label class="mb-2.5 block text-black dark:text-white invisible">
 													btn
 												</label>
-												<input type="submit" value="Pay" name="updateBtn" class="w-full bg-primary hover:bg-secondary hover:pointer-events-auto rounded text-white py-3 px-5 font-medium outline-none transition" />
+												<input type="submit" value="Pay" name="payInvoice" class="w-full bg-primary hover:bg-secondary hover:pointer-events-auto rounded text-white py-3 px-5 font-medium outline-none transition" />
 											</div>
 										</div>
 									</div>
