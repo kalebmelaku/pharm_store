@@ -16,7 +16,7 @@
 									</th>
 				
 									<th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
-										Reg Date
+										Date
 									</th>
 
 									<th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">

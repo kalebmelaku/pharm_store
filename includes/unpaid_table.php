@@ -34,9 +34,9 @@
         <span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Date</span>
         <p class="break-words">
             <?php if ($status == 1) {
-                $getDate = $conn->query("SELECT `date` FROM `suppliers_payment` WHERE `invoice_no` = '$invoice_no'");
+                $getDate = $conn->query("SELECT `date`, `payment_method` FROM `suppliers_payment` WHERE `invoice_no` = '$invoice_no'");
                 $rs = $getDate->fetch_assoc();
-                echo 'Payed on ' . $rs['date'];
+                echo 'Payed on ' . $rs['date'] . ' with ' . $rs['payment_method'];
             } else {
                 echo 'Taken on ' . $date;
             }

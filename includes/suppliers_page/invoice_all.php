@@ -16,7 +16,7 @@
 									</th>
 				
 									<th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
-										Reg Date
+										Date
 									</th>
 
 									<th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
@@ -29,7 +29,7 @@
 
 								// retrieve selected results from database and display them on page
 								
-                                    $sql = $conn->query("SELECT * FROM `suppliers` WHERE `invoice_no` = '$invoice_no'");
+                                    $sql = $conn->query("SELECT * FROM `suppliers` WHERE `invoice_no` LIKE '%$invoice_no%'");
 									if ($sql->num_rows > 0) {
                                         while ($row = $sql->fetch_assoc()) {
                                             $id = $row['id'];
