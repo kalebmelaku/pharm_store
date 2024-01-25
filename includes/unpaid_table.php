@@ -57,6 +57,6 @@
         }
         ?>
 
-        <a href="./unpaidDetail.php?id=<?php echo $invoice_no; ?>" class="text-white  bg-secondary px-4 py-2 hover:bg-primary transition-all ease-in duration-200 ">Detail</a>
+        <a href="./invoiceDetail.php?id=<?php echo $invoice_no; ?>" class="text-white  bg-secondary px-4 py-2 hover:bg-primary transition-all ease-in duration-200 ">Detail</a>
     </td>
 </tr>

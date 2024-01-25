@@ -41,10 +41,10 @@
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
 					<a class="<?php if ($page == 'home') {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} else {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} ?>" href="./home.php">
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./home.php">
 						<i class="fa-solid fa-warehouse"></i>
 						Inventory
 
@@ -56,11 +56,11 @@
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
 					<a class="<?php if ($page == 'pharmacy') {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} else {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} ?>" href="./pharmacy.php">
-					<i class="fa-solid fa-prescription-bottle-medical"></i>
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./pharmacy.php">
+						<i class="fa-solid fa-prescription-bottle-medical"></i>
 						Pharmacy
 
 					</a>
@@ -71,10 +71,10 @@
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
 					<a class="<?php if ($page == 'expired') {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} else {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} ?>" href="./expired.php">
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./expired.php">
 						<i class="fa-solid fa-calendar-xmark"></i>
 						Expiring Soon
 
@@ -86,55 +86,84 @@
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
 					<a class="<?php if ($page == 'suppliers') {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} else {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} ?>" href="./suppliers.php">
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./suppliers.php">
 						<i class="fa-solid fa-truck-field"></i>
 						Suppliers
 
 					</a>
 				</li>
 				<!-- <li class="<?php if ($page == 'unpaid') {
-								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
-							} else {
-								echo 'mb-4 w-full text-white hover:bg-graydark';
-							} ?>">
+									echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+								} else {
+									echo 'mb-4 w-full text-white hover:bg-graydark';
+								} ?>">
 					<a class="<?php if ($page == 'unpaid') {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} else {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} ?>" href="./unpaid.php">
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./unpaid.php">
 						<i class="fa-solid fa-file-invoice"></i>
 						Unpaid
 
 					</a>
 				</li> -->
-				<li class="<?php if ($page == 'settings') {
-								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
-							} else {
-								echo 'mb-4 w-full text-white hover:bg-graydark';
-							} ?>">
+				<li id="config-toggler" class="<?php if ($page == 'settings') {
+													echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+												} else {
+													echo 'mb-4 w-full text-white hover:bg-graydark';
+												} ?>">
 					<a class="<?php if ($page == 'settings') {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} else {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} ?>" href="./settings.php">
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="#">
 						<i class="fa-solid fa-gear"></i>
 						Settings
 
 					</a>
 				</li>
+				<ul class="<?php if($page == 'settings'){
+					echo 'flex ml-4 flex-col';
+				}else{
+					echo 'flex ml-4 flex-col hidden';
+				} ?>" id="configs">
+					<li class="mb-4 w-full text-white hover:bg-graydark">
+
+						<a class="<?php if ($page == 'settings') {
+										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									} else {
+										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									} ?>" href="./payments.php">
+							<i class="fa-solid fa-gear"></i>
+							Payments
+						</a>
+					</li>
+					<li class="mb-4 w-full text-white hover:bg-graydark">
+						<a class="<?php if ($page == 'settings') {
+										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									} else {
+										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									} ?>" href="./password.php">
+							<i class="fa-solid fa-lock"></i>
+							Password
+
+						</a>
+					</li>
+
+				</ul>
 				<li class="<?php if ($page == 'logout') {
 								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 							} else {
 								echo 'mb-4 w-full text-white hover:bg-graydark';
 							} ?>">
 					<a class="<?php if ($page == 'logout') {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} else {
-								echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-							} ?>" href="./backend/logout.php">
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./backend/logout.php">
 						<i class="fa-solid fa-right-from-bracket"></i>
 						Logout
 
@@ -146,3 +175,12 @@
 	</nav>
 	</div>
 </aside>
+
+<script>
+	const config_toggler = document.getElementById('config-toggler');
+	const configs = document.getElementById('configs');
+
+	config_toggler.addEventListener('click', () => {
+		configs.classList.toggle('hidden');
+	})
+</script>

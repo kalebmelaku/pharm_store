@@ -20,7 +20,7 @@
 	<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
 		<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Purchase $</span>
 		<p class="break-words">
-			<?php echo $purchase; ?>
+			<?php echo $purchase . " ETB"; ?>
 		</p>
 	</td>
 	<!-- <td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
@@ -35,29 +35,37 @@
 			<?php echo $reg_date; ?>
 		</p>
 	</td>
-	<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
-		<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Exp Date</span>
-		<p class="break-words">
-			<?php echo $exp_date; ?>
-		</p>
-	</td>
+
 	<?php
+	if ($pageName != 'invoice_detail') {
+	?>
+		<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
+			<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Exp Date</span>
+			<p class="break-words">
+				<?php echo $exp_date; ?>
+			</p>
+		</td>
+	<?php
+	}
 	if ($pageName == "expired") {
 	?>
 		<td class="<?php
-			if(intval($remaining_days) < 0){
-				echo "text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto bg-danger";
-			}else{
-				echo "text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto bg-warning";
-			}
-		?>">
+					if (intval($remaining_days) < 0) {
+						echo "text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto bg-danger";
+					} else {
+						echo "text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto bg-warning";
+					}
+					?>">
 			<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Remaining Days</span>
 			<p class="break-words">
 				<?php echo $remaining_days; ?>
 			</p>
 		</td>
 	<?php
-	} else {
+	}else if($pageName == 'invoice_detail'){
+
+	} 
+	else {
 	?>
 		<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
 			<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Actions</span>
@@ -66,7 +74,7 @@
 		</td>
 	<?php
 	}
-
+	
 
 
 	?>
