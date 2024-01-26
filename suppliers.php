@@ -55,7 +55,7 @@ $payStatus = $rs['status']
 					<!-- component -->
 
 					<div class="flex items-center justify-center">
-						<form class="bg-white text-dark dark:bg-boxdark mb-4 rounded" action="./suppliers.php" method="GET">
+						<form class="bg-white text-dark dark:bg-boxdark mb-4 rounded flex flex-col" action="./suppliers.php" method="GET">
 							<div class="p-6.5">
 								<div class="text-center text-xl mb-2 dark:text-white text-black">Filter Search</div>
 								<div class=" flex flex-col gap-6 xl:flex-row">
@@ -98,6 +98,7 @@ $payStatus = $rs['status']
 								<div class="mb-2 flex flex-col gap-6 xl:flex-row">
 								</div>
 							</div>
+							<a href="./addSupplier.php" class="text-white w- text-center bg-secondary px-4 py-2 hover:bg-primary transition-all ease-in duration-200 ">Add New Supplier</a>
 						</form>
 					</div>
 
@@ -237,8 +238,6 @@ $payStatus = $rs['status']
 			invoiceTotal.value = total;
 
 		}
-
-		
 	</script>
 </body>
 

@@ -4170,6 +4170,9 @@ tr:nth-child(even) {
 	.xl\:w-1\/2 {
 		width: 50%;
 	}
+	.xl\:w-3\/4 {
+		width: 75%;
+	}
 
 	.xl\:grid-cols-4 {
 		grid-template-columns: repeat(4, minmax(0, 1fr));

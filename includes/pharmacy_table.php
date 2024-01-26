@@ -20,7 +20,7 @@
     <td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
         <span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Selling $</span>
         <p class="break-words">
-            <?php echo $sell_price; ?>
+            <?php echo $sell_price . " BIRR"; ?>
         </p>
     </td>
     <td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">

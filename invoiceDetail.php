@@ -31,17 +31,17 @@ if (empty($invoice_no)) {
             <main>
                 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
                     <div class="flex items-center justify-center">
-                        <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+                        <div class="mx-auto max-w-screen-2xl xl:w-3/4 p-4 md:p-6 2xl:p-10">
                             <!-- component -->
 
-                            <div class="flex items-center justify-center">
+                            <!-- <div class="flex items-center justify-center">
                                 <form class="mx-10 flex w-3/4 mb-8 rounded bg-white dark:bg-boxdark" action="./home.php" method="GET">
                                     <input class="text-gray-400 w-3/4 border-none rounded-md bg-transparent dark:bg-boxdark px-4 py-1 outline-none focus:outline-none" type="search" name="search" placeholder="Search..." />
                                     <button type="submit" class=" text-sm md:text-lg md:w-1/4 w-[30%]  cursor-pointer rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90">
                                         Search
                                     </button>
                                 </form>
-                            </div>
+                            </div> -->
                             <table class="w-full border-collapse text-boxdark-2 dark:bg-danger dark:text-white">
                                 <thead class="bg-primary text-white">
                                     <tr>
@@ -64,15 +64,15 @@ if (empty($invoice_no)) {
                                 </thead>
                                 <tbody class="dark:bg-black dark:text-white " id="tbody">
                                     <?php
-                                    $select = $conn->query("SELECT * FROM `invoice` WHERE `invoice_no` = '$invoice_no'");
+                                    $select = $conn->query("SELECT * FROM `temp_meds` WHERE `invoice_no` = '$invoice_no'");
                                     while ($row = $select->fetch_assoc()) {
                                         $id = $row['id'];
                                         $invoice_no = $row['invoice_no'];
                                         $name = $row['name'];
                                         $type = $row['type'];
-                                        $amount = $row['amount'];
-                                        $purchase = $row['purchase_price'];
-                                        $reg_date = $row['date'];
+                                        $amount = $row['quantity'];
+                                        $purchase = $row['price'];
+                                        $reg_date = $row['exdate'];
                                         $pageName = 'invoice_detail';
                                         include './includes/table_row.php';
                                     }
