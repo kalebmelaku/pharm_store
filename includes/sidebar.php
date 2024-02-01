@@ -65,6 +65,21 @@
 
 					</a>
 				</li>
+				<li class="<?php if ($page == 'sell') {
+								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+							} else {
+								echo 'mb-4 w-full text-white hover:bg-graydark';
+							} ?>">
+					<a class="<?php if ($page == 'sell') {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./pharmacy/">
+						<i class="fa-solid fa-prescription-bottle-medical"></i>
+						Sell
+
+					</a>
+				</li>
 				<li class="<?php if ($page == 'expired') {
 								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 							} else {
