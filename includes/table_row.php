@@ -17,18 +17,29 @@
 			<?php echo $amount; ?>
 		</p>
 	</td>
-	<!-- <td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
-		<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Purchase $</span>
-		<p class="break-words">
-			<?php echo $purchase . " ETB"; ?>
-		</p>
-	</td> -->
-	<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
-		<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Selling $</span>
-		<p class="break-words">
-			<?php echo $sell_price . " BIRR"; ?>
-		</p>
-	</td>
+	<?php
+	if ($pageName == 'invoice_detail') {
+	?>
+		<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
+			<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Purchase $</span>
+			<p class="break-words">
+				<?php echo $purchase . " ETB"; ?>
+			</p>
+		</td>
+	<?php
+
+	} else {
+	?>
+		<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
+			<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Selling $</span>
+			<p class="break-words">
+				<?php echo $sell_price . " BIRR"; ?>
+			</p>
+		</td>
+	<?php
+	}
+	?>
+
 	<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
 		<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Reg Date</span>
 		<p class="break-words">
@@ -62,10 +73,8 @@
 			</p>
 		</td>
 	<?php
-	}else if($pageName == 'invoice_detail'){
-
-	} 
-	else {
+	} else if ($pageName == 'invoice_detail') {
+	} else {
 	?>
 		<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
 			<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Actions</span>
@@ -74,7 +83,7 @@
 		</td>
 	<?php
 	}
-	
+
 
 
 	?>

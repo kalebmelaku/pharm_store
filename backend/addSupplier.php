@@ -37,15 +37,16 @@ if (isset($_POST['nextForm'])) {
     $getTotal = $conn->query("SELECT SUM(price) AS `total` FROM `temp_meds` WHERE `invoice_no` = '$invoice_number'");
     $rs = $getTotal->fetch_assoc();
     $totalInvoice = $rs['total'];
+    $total = 0;
     while ($row = $getAll->fetch_assoc()) {
         $name = $row['name'];
         $type = $row['type'];
         $price = $row['price'];
         $quantity = $row['quantity'];
         $exdate = $row['exdate'];
-
+        $total += $price * $quantity;
         //update invoice table
-        $update = $conn->query("UPDATE `suppliers` SET `total_amount` = '$totalInvoice' WHERE `invoice_no` = '$invoice_number'");
+        $update = $conn->query("UPDATE `suppliers` SET `total_amount` = '$total' WHERE `invoice_no` = '$invoice_number'");
         if ($update) {
             //insert to pharm_store
             $insert_meds = $conn->query("INSERT INTO `pharm_store`(`name`, `type`, `amount`, `price`, `exdate`, `invoice_no`) VALUES (
