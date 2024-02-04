@@ -34,7 +34,7 @@ if (isset($_POST['send'])) {
                 }
             } else {
 
-                $insert = $conn->query("INSERT INTO `meds`(`med_id`,`name`, `type`, `amount`, `price`, `exdate`) VALUES ('$medid','$name','$type','$amount','$sellPrice','$exp_date')");
+                $insert = $conn->query("INSERT INTO `meds`(`med_id`,`name`, `type`, `amount`, `price`, `purchase_price`, `exdate`) VALUES ('$medid','$name','$type','$amount','$sellPrice', '$price', '$exp_date')");
                 if ($insert) {
                     header("Location: ../sendMedicine.php?msg=Medicine Sent to Pharmacy&id=$medid&status=200");
                 } else {

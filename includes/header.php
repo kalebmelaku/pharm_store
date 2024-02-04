@@ -53,6 +53,7 @@
 									>
 										<input
 											type="checkbox"
+											id="darkToggle"
 											:value="darkMode"
 											@change="darkMode = !darkMode"
 											class="absolute top-0 z-50 m-0 h-full w-full cursor-pointer opacity-0"

@@ -184,6 +184,21 @@
 
 					</a>
 				</li>
+				<li class="<?php if ($page == 'report') {
+								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+							} else {
+								echo 'mb-4 w-full text-white hover:bg-graydark';
+							} ?>">
+					<a class="<?php if ($page == 'report') {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./report.php">
+						<i class="fa-solid fa-right-from-bracket"></i>
+						Report
+
+					</a>
+				</li>
 
 			</ul>
 	</div>

@@ -2,7 +2,7 @@
 require './backend/db.php';
 $select = $conn->query('SELECT `status` FROM `suppliers`');
 $rs = $select->fetch_assoc();
-$payStatus = $rs['status']
+$payStatus = @$rs['status']
 ?>
 <!DOCTYPE html>
 <html lang="en">
