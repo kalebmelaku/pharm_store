@@ -17,13 +17,15 @@ require './backend/db.php';
     <link href="./style/style.css" rel="stylesheet">
 </head>
 <style>
-    .chartTwo::-webkit-scrollbar{
+    .chartTwo::-webkit-scrollbar {
         width: 10px;
     }
-    .chartTwo::-webkit-scrollbar-thumb{
+
+    .chartTwo::-webkit-scrollbar-thumb {
         background-color: rgb(138 22 104);
     }
-    .chartTwo::-webkit-scrollbar-track{
+
+    .chartTwo::-webkit-scrollbar-track {
         background-color: "#24303f";
     }
 </style>
@@ -162,17 +164,23 @@ require './backend/db.php';
                                 <canvas id="profitChart" height="150px" class="-ml-5 dark:text-white">
                                 </canvas>
                                 <?php
+                                $year = explode("-", date('Y-m-d'))[0];
                                 $query = $conn->query("
-    SELECT 
-      MONTHNAME(date) as monthname,
-        SUM(sub_price) as amount
-    FROM `cash_payment_pharm`
-    GROUP BY monthname ORDER BY `date` ASC
+                                SELECT
+                                MONTHNAME(date) AS month,
+                                m.name,
+                                (s.sub_price - (s.quan * m.purchase_price)) AS profit
+                                FROM
+                                `cash_payment_pharm` s
+                                INNER JOIN
+                                `meds` m on s.id = m.med_id
+                                WHERE YEAR(s.date) = '$year'
+                                GROUP BY month ORDER BY `date` ASC
   ");
 
                                 foreach ($query as $data) {
-                                    $months[] = $data['monthname'];
-                                    $amounts[] = $data['amount'];
+                                    $months[] = $data['month'];
+                                    $amounts[] = $data['profit'];
                                 }
 
                                 ?>
@@ -186,16 +194,15 @@ require './backend/db.php';
                                 <div class="mb-4 flex items-center justify-between">
                                     <div>
                                         <h4 class="text-xl font-bold text-black dark:text-white">
-                                            Profit this year
+                                            Total:
                                         </h4>
                                     </div>
-                                    <select name="#" id="#" class="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none">
-                                        <option value="">This Week</option>
-                                        <option value="">Last Week</option>
+                                    <select name="selectYear" id="selectYear" class="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none" onchange="fetchMonths()">
+                                        <option value="" selected default disabled> Please Select Year</option>
                                     </select>
                                 </div>
                                 <div class="relative z-20 inline-block flex flex-col ">
-                                    <div class="flex flex-col w-full">
+                                    <div id="monthContainer" class="flex flex-col w-full">
                                         <div class="rounded-sm bg-gray-2 dark:bg-meta-4 flex items-center justify-between">
                                             <div class="p-2.5 xl:p-5">
                                                 <h5 class="text-sm font-medium uppercase xsm:text-base">Month</h5>
@@ -205,102 +212,15 @@ require './backend/db.php';
                                             </div>
 
                                         </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
+                                        <!-- <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
                                             <div class="flex items-center justify-center p-2.5 xl:p-5">
                                                 <p class="font-medium text-black dark:text-white">January</p>
                                             </div>
                                             <div class="flex items-center justify-center p-2.5 xl:p-5">
                                                 <p class="font-medium text-meta-3">$5,</p>
                                             </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
-                                        <div class="border-b border-stroke dark:border-strokedark flex items-center justify-between">
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-black dark:text-white">January</p>
-                                            </div>
-                                            <div class="flex items-center justify-center p-2.5 xl:p-5">
-                                                <p class="font-medium text-meta-3">$5,768</p>
-                                            </div>
-                                        </div>
+                                        </div> -->
+
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +264,7 @@ require './backend/db.php';
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Amount ($)',
+                            text: 'Amount (Birr)',
                             color: '#aeaa9b',
                         },
                         ticks: {
@@ -375,6 +295,77 @@ require './backend/db.php';
                 }
             }
         })
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchYears();
+        })
+
+        function fetchYears() {
+            fetch('http://localhost/pharm_store/api/getYears.php')
+                .then(response => response.json())
+                .then(data => {
+                    let yearDropDown = document.getElementById('selectYear')
+                    // yearDropDown.innerHTML = '<option value="" selected default disabled>Please Select Year</option>';
+                    data.forEach(year => {
+                        const option = document.createElement('option');
+                        option.value = year;
+                        option.textContent = year;
+                        yearDropDown.appendChild(option);
+                    })
+                     let selectedYear = document.getElementById('selectYear').value;
+                     if(!selectedYear){
+                        selectedYear = new Date().getFullYear();
+                        yearDropDown.value = selectedYear
+                     }
+                    fetchMonths(selectedYear)
+                })
+                .catch(error => console.log(error))
+        }
+
+        function fetchMonths(selectedYear) {
+            // let selectedYear = document.getElementById('selectYear').value;
+            // if (!selectedYear) return false;
+            fetch(`http://localhost/pharm_store/api/testing.php?year=${selectedYear}`)
+                .then(response => response.json())
+                .then(data => {
+                    let monthContainer = document.getElementById('monthContainer')
+                    monthContainer.innerHTML = ''
+                    data.forEach((month) => {
+                        const container = document.createElement('div');
+                        const monthNameContainer = document.createElement('div');
+                        const monthName = document.createElement('p');
+                        const profitContainer = document.createElement('div');
+                        const profit = document.createElement('p');
+
+                        container.classList.add('border-b')
+                        container.classList.add('border-stroke')
+                        container.classList.add('dark:border-strokedark')
+                        container.classList.add('flex')
+                        container.classList.add('items-center')
+                        container.classList.add('justify-between')
+
+                        monthNameContainer.classList.add('p-2.5')
+                        monthNameContainer.classList.add('xl:p-5')
+                        profitContainer.classList.add('p-2.5')
+                        profitContainer.classList.add('xl:p-5')
+
+                        monthName.classList.add('font-medium')
+                        monthName.classList.add('text-black')
+                        monthName.classList.add('dark:text-white')
+                        profit.classList.add('font-medium')
+                        profit.classList.add('text-meta-3')
+
+                        monthName.textContent = month.month
+                        profit.textContent = month.profit + ' Birr'
+
+                        monthNameContainer.appendChild(monthName);
+                        profitContainer.appendChild(profit);
+                        container.appendChild(monthNameContainer);
+                        container.appendChild(profitContainer);
+                        monthContainer.appendChild(container);
+                    })
+                })
+        }
     </script>
 </body>
 
