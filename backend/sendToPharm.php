@@ -10,7 +10,7 @@ if (isset($_POST['send'])) {
         $name = $row['name'];
         $type = $row['type'];
         $org_amount = $row['amount'];
-        $price = $row['price'];
+        $price = $row['purchase_price'];
         $exp_date = $row['exdate'];
 
         //check amount
@@ -22,19 +22,19 @@ if (isset($_POST['send'])) {
             $conn->query("UPDATE `pharm_store` SET `amount`='$new_amount' WHERE `id` = '$medid' ");
 
             //search if it exists and update the amount
-            $search = $conn->query("SELECT `amount` FROM `meds` WHERE `med_id` = '$medid' ");
+            $search = $conn->query("SELECT `amount` FROM `medicines` WHERE `med_id` = '$medid' ");
             $rows = $search->fetch_assoc();
             if ($search->num_rows > 0) {
                 $new_meds_amount = $rows['amount'] + $amount;
-                $update = $conn->query("UPDATE `meds` SET `amount` = '$new_meds_amount', `price` = '$sellPrice' WHERE `med_id` = '$medid' ");
+                $update = $conn->query("UPDATE `medicines` SET `amount` = '$new_meds_amount', `sell_price` = '$sellPrice' WHERE `med_id` = '$medid' ");
                 if ($update) {
                     header("Location: ../sendMedicine.php?msg=Medicine Sent to Pharmacy&id=$medid&status=200");
-                }else{
+                } else {
                     echo $conn->error;
                 }
             } else {
 
-                $insert = $conn->query("INSERT INTO `meds`(`med_id`,`name`, `type`, `amount`, `price`, `purchase_price`, `exdate`) VALUES ('$medid','$name','$type','$amount','$sellPrice', '$price', '$exp_date')");
+                $insert = $conn->query("INSERT INTO `medicines`(`med_id`,`name`, `type`, `amount`, `sell_price`, `purchase_price`, `exdate`) VALUES ('$medid','$name','$type','$amount','$sellPrice', '$price', '$exp_date')");
                 if ($insert) {
                     header("Location: ../sendMedicine.php?msg=Medicine Sent to Pharmacy&id=$medid&status=200");
                 } else {

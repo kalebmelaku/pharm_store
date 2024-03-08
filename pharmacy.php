@@ -21,38 +21,38 @@ require './backend/db.php';
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
 
 	<div class="flex h-screen overflow-hidden">
-		<?php 
+		<?php
 		$page = 'pharmacy';
 		include './includes/sidebar.php'; ?>
 		<div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 			<?php include './includes/header.php'; ?>
 			<main>
-			<div class="alert-box absolute flex border-l-6 border-primary bg-danger px-7 py-8 shadow-md dark:bg-danger text-white md:p-9 align-center justify-center" id="alert-box">
+				<div class="alert-box absolute flex border-l-6 border-primary bg-danger px-7 py-8 shadow-md dark:bg-danger text-white md:p-9 align-center justify-center" id="alert-box">
 
-<div class="w-full">
-	<h5 class="mb-3 font-bold text-white">
-		Update Info!
-	</h5>
-	<input type="hidden" name="" id="status" value="<?php echo @$_REQUEST['status']; ?>">
-	<ul>
-		<li class="leading-relaxed text-white">
-			<p id="error-text">
-				<?php
-				$msg = @$_REQUEST['msg'];
-				$lout = @$_REQUEST['lout'];
-				echo $msg;
-				echo $lout;
-				?>
-			</p>
-		</li>
-	</ul>
-</div>
-</div>
+					<div class="w-full">
+						<h5 class="mb-3 font-bold text-white">
+							Update Info!
+						</h5>
+						<input type="hidden" name="" id="status" value="<?php echo @$_REQUEST['status']; ?>">
+						<ul>
+							<li class="leading-relaxed text-white">
+								<p id="error-text">
+									<?php
+									$msg = @$_REQUEST['msg'];
+									$lout = @$_REQUEST['lout'];
+									echo $msg;
+									echo $lout;
+									?>
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
 				<div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
 					<!-- component -->
-					
+
 					<div class="flex items-center justify-center">
-						<form class="mx-10 flex w-3/4 mb-8 rounded bg-white dark:bg-boxdark" action="./home.php" method="GET">
+						<form class="mx-10 flex w-3/4 mb-8 rounded bg-white dark:bg-boxdark" action="./pharmacy.php" method="GET">
 							<input class="text-gray-400 w-3/4 border-none rounded-md bg-transparent dark:bg-boxdark px-4 py-1 outline-none focus:outline-none" type="search" name="search" placeholder="Search..." />
 							<button type="submit" class=" text-sm md:text-lg md:w-1/4 w-[30%]  cursor-pointer rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90">
 								Search
@@ -65,7 +65,7 @@ require './backend/db.php';
 					$search_result = 1;
 					$search = $_GET['search'] ?? '';
 					// find out the number of results stored in database
-					$sql = 'SELECT * FROM `meds` ';
+					$sql = 'SELECT * FROM `medicines` ';
 					$result = mysqli_query($conn, $sql);
 					$number_of_results = mysqli_num_rows($result);
 
@@ -110,19 +110,19 @@ require './backend/db.php';
 
 							// retrieve selected results from database and display them on page
 							if (empty($search)) {
-								$sql = $conn->query('SELECT * FROM `meds` ORDER BY `name` ASC LIMIT ' . $this_page_first_result . ',' . $results_per_page);
+								$sql = $conn->query('SELECT * FROM `medicines` ORDER BY `name` ASC LIMIT ' . $this_page_first_result . ',' . $results_per_page);
 								while ($row = $sql->fetch_assoc()) {
 									$id = $row['med_id'];
 									$name = $row['name'];
 									$type = $row['type'];
 									$amount = $row['amount'];
-									$sell_price = $row['price'];
+									$sell_price = $row['sell_price'];
 									$exp_date = $row['exdate'];
 									$pageName = '';
 									include './includes/pharmacy_table.php';
 								}
 							} else {
-								$sql = $conn->query("SELECT * FROM `meds` WHERE `name` LIKE '%$search%' ORDER BY `name` ASC");
+								$sql = $conn->query("SELECT * FROM `medicines` WHERE `name` LIKE '%$search%' ORDER BY `name` ASC");
 								if ($sql->num_rows > 0) {
 									while ($row = $sql->fetch_assoc()) {
 										$id = $row['med_id'];
@@ -130,9 +130,9 @@ require './backend/db.php';
 										$type = $row['type'];
 										$amount = $row['amount'];
 										// $purchase = $row['cost'];
-										$sell_price = $row['price'];
-										$reg_date = $row['date'];
-										$exp_date = $row['exdate'];
+										$sell_price = $row['sell_price'];
+										$reg_date = $row['reg_date'];
+										$exp_date = $row['ex_date'];
 										$pageName = '';
 										include './includes/pharmacy_table.php';
 									}
@@ -186,9 +186,9 @@ require './backend/db.php';
 		const searchResult = document.getElementById('searchResult');
 
 		// if(searchResult.value == )
-		if(table.lastElementChild.innerText == ''){
+		if (table.lastElementChild.innerText == '') {
 			table.classList.add('hidden');
-		}else{
+		} else {
 			table.classList.remove('hidden');
 		}
 	</script>

@@ -2,14 +2,14 @@
 require_once '../backend/db.php';
 $year = $_GET['year'];
 $result = $conn->query("SELECT
-MONTHNAME(date) AS month,
+MONTHNAME(s.date) AS month,
 m.name,
-(s.sub_price - (s.quan * m.purchase_price)) AS profit
+SUM(s.sub_price - (s.quan * m.purchase_price)) AS profit
 FROM
-`cash_payment_pharm` s
+`pharmacy_sale` s
 INNER JOIN
-`meds` m on s.id = m.med_id
-WHERE YEAR(s.date) = '$year'
+`medicines` m on s.id = m.med_id
+WHERE YEAR(s.date) = '$year' AND `payment` != 'Credit'
 GROUP BY month ORDER BY `date` ASC
 ");
 

@@ -13,5 +13,6 @@
         "quan",
         "strokedark",
         "xmark"
-    ]
+    ],
+    "liveServer.settings.port": 5502
 }

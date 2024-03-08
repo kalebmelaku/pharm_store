@@ -10,8 +10,8 @@ while ($row = $sql->fetch_assoc()) {
     $med_name = $row['name'];
     $type = $row['type'];
     $amount = $row['amount'];
-    $org_price = $row['cost'];
-    $sell_price = $row['price'];
+    $sell_price = $row['sell_price'];
+    $purchase_price = $row['purchase_price'];
     $reg_date = $row['date'];
     $exp_date = $row['exdate'];
 }
@@ -41,11 +41,11 @@ while ($row = $sql->fetch_assoc()) {
         $page = 'home';
         include './includes/sidebar.php'; ?>
         <div class="relative flex flex-1 flex-col">
-            
+
             <?php include './includes/header.php'; ?>
             <main>
                 <div class="alert-box absolute flex border-l-6 border-primary bg-danger px-7 py-8 shadow-md dark:bg-danger text-white md:p-9 align-center justify-center" id="alert-box">
-    
+
                     <div class="w-full">
                         <h5 class="mb-3 font-bold text-white">
                             Send Info!
@@ -88,7 +88,7 @@ while ($row = $sql->fetch_assoc()) {
                                             <label class="mb-2.5 block text-black dark:text-white">
                                                 Selling Price
                                             </label>
-                                            <input required name="price" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" value="<?php echo $sell_price; ?>" />
+                                            <input required name="price" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" value="<?php echo $purchase_price; ?>" />
                                         </div>
                                     </div>
                                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">

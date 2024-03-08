@@ -4,16 +4,16 @@ $id = $_GET['id'];
 if (empty($id)) {
 	header("Location: ./home.php");
 }
-$sql = $conn->query("SELECT * FROM `meds` WHERE `med_id` = '$id'");
+$sql = $conn->query("SELECT * FROM `medicines` WHERE `med_id` = '$id'");
 
 while ($row = $sql->fetch_assoc()) {
 	$med_name = $row['name'];
 	$type = $row['type'];
 	$amount = $row['amount'];
 	// $org_price = $row['cost'];
-	$sell_price = $row['price'];
+	$sell_price = $row['sell_price'];
 	// $reg_date = $row['date'];
-	$exp_date = $row['exdate'];
+	$exp_date = $row['ex_date'];
 }
 
 ?>
@@ -35,7 +35,7 @@ while ($row = $sql->fetch_assoc()) {
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
 	<div class="flex h-screen overflow-hidden">
-		<?php 
+		<?php
 		$page = 'pharmacy';
 		include './includes/sidebar.php'; ?>
 		<div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
@@ -103,7 +103,7 @@ while ($row = $sql->fetch_assoc()) {
 											</label>
 											<input required name="purchasePrice" type="text" value="<?php echo $sell_price; ?>" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
 										</div>
-                                        <div class="w-full xl:w-1/2">
+										<div class="w-full xl:w-1/2">
 											<label class="mb-2.5 block text-black dark:text-white">
 												Expire Date
 											</label>

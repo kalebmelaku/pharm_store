@@ -186,8 +186,15 @@ $payStatus = @$rs['status']
 													<div class="relative z-20 bg-white dark:bg-form-input">
 														<select class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" id="paymentMethod" name="paymentMethod" required>
 															<option value="cash" disabled selected>Select Payment Method</option>
-															<option value="cash">Cash</option>
-															<option value="ebirr">Ebirr</option>
+															<?php
+															$fetchPayment = $conn->query("SELECT * FROM `paymentmethod`");
+															while ($payment = $fetchPayment->fetch_assoc()) {
+																$paymentName = $payment['name'];
+															?>
+																<option value="<?php echo $paymentName; ?>"><?php echo $paymentName; ?></option>
+															<?php
+															}
+															?>
 														</select>
 													</div>
 												</div>

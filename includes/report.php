@@ -1,19 +1,24 @@
 <?php
 require './backend/db.php';
 $result = $conn->query("SELECT
-MONTHNAME(date) AS month,
-m.name,
-(s.quan * m.price) AS cost_price,
-(s.quan * m.purchase_price) AS purchase_price,
-(s.sub_price - (s.quan * m.purchase_price)) AS profit
+    MONTHNAME(s.date) AS month,
+    m.name,
+    SUM(s.quan * m.sell_price) AS cost_price,
+    SUM(s.quan * m.purchase_price) AS purchase_price,
+    SUM(s.sub_price - (s.quan * m.purchase_price)) AS profit
 FROM
-`cash_payment_pharm` s
+    `pharmacy_sale` s
 INNER JOIN
-`meds` m on s.id = m.med_id
-WHERE MONTH(`date`) = '$month_num' AND YEAR(`date`) = $year
-GROUP BY month ORDER BY `date` ASC
+    `medicines` m ON s.id = m.med_id
+WHERE
+    MONTH(s.date) = '$month_num' AND YEAR(s.date) = $year AND `payment` != 'Credit'
+GROUP BY
+    month
+ORDER BY
+    s.date ASC;
+
 ");
-while($row = $result->fetch_assoc()){
+while ($row = $result->fetch_assoc()) {
     $profit = $row['profit'];
     $total_cost = $row['purchase_price'];
     $total_revenue = $row['cost_price'];
@@ -38,7 +43,7 @@ while($row = $result->fetch_assoc()){
 //         $total_cost += ($quantity * $purchasePrice);
 //     }
 //     $profit = $total_revenue - $total_cost;
-    
+
 // } else {
 //     $profit = 0;
 //     echo $conn->error;

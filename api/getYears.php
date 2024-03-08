@@ -1,7 +1,7 @@
 <?php
 require_once  "../backend/db.php";
 
-$fetchYear = $conn->query("SELECT DISTINCT YEAR(date) AS year FROM `cash_payment_pharm` ORDER BY `date` ASC");
+$fetchYear = $conn->query("SELECT DISTINCT YEAR(date) AS year FROM `pharmacy_sale` ORDER BY `date` ASC");
 $years = [];
 
 if($fetchYear->num_rows > 0){

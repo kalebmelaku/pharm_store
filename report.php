@@ -35,10 +35,11 @@ require './backend/db.php';
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
     <div class="flex h-screen overflow-hidden">
         <?php
-        $page = 'report';
-        include './includes/sidebar.php'; ?>
+$page = 'report';
+include './includes/sidebar.php';
+?>
         <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-            <?php include './includes/header.php'; ?>
+            <?php include './includes/header.php';?>
 
             <main>
 
@@ -50,11 +51,16 @@ require './backend/db.php';
                             <div class=" flex flex-col gap-6 xl:flex-row">
                                 <div class="w-full xl:w-1/2">
                                     <input name="date" type="month" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" value="<?php
-                                                                                                                                                                                                                                                                                                                                                            $date = date("Y-m-d");
-                                                                                                                                                                                                                                                                                                                                                            $month_num = explode('-', $date)[1];
-                                                                                                                                                                                                                                                                                                                                                            $year = explode('-', $date)[0];
-                                                                                                                                                                                                                                                                                                                                                            echo $year . '-' . $month_num;
-                                                                                                                                                                                                                                                                                                                                                            ?>" />
+if (isset($_GET['date'])) {
+    $date = $_GET['date'];
+    echo $date;
+} else {
+    $date = date("Y-m-d");
+    $month_num = explode('-', $date)[1];
+    $year = explode('-', $date)[0];
+    echo $year . '-' . $month_num;
+}
+?>" />
                                 </div>
                                 <div class="w-full xl:w-1/2">
                                     <input type="submit" value="Search" name="search" class="w-full bg-primary hover:bg-secondary hover:cursor-pointer rounded text-white py-3 px-5 font-medium outline-none transition" />
@@ -65,20 +71,21 @@ require './backend/db.php';
 
                     </form>
                     <?php
-                    $date = date("Y-m-d");
-                    if ((!isset($_GET['search']))) {
-                        $month_num = explode('-', $date)[1];
-                        $year = explode('-', $date)[0];
-                    } else {
-                        if ($_GET['date'] == '') {
-                            $month_num = explode('-', $date)[1];
-                            $year = explode('-', $date)[0];
-                        } else {
-                            $month_num = explode('-', $_GET['date'])[1];
-                            $year = explode('-', $_GET['date'])[0];
-                        }
-                    }
-                    include './includes/report.php'; ?>
+$date = date("Y-m-d");
+if ((!isset($_GET['search']))) {
+    $month_num = explode('-', $date)[1];
+    $year = explode('-', $date)[0];
+} else {
+    if ($_GET['date'] == '') {
+        $month_num = explode('-', $date)[1];
+        $year = explode('-', $date)[0];
+    } else {
+        $month_num = explode('-', $_GET['date'])[1];
+        $year = explode('-', $_GET['date'])[0];
+    }
+}
+include './includes/report.php';
+?>
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
                         <!-- Card Item Start -->
                         <div class="rounded-lg border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -108,7 +115,7 @@ require './backend/db.php';
                                     Total Sell
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo $total_revenue . " Birr"; ?>
+                                    <?php echo $total_revenue ?? 0 . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
@@ -125,7 +132,7 @@ require './backend/db.php';
                                     Total Expense
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo $total_cost . " Birr"; ?>
+                                    <?php echo $total_cost ?? 0 . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
@@ -142,7 +149,7 @@ require './backend/db.php';
                                     Net Sell
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo $profit . " Birr"; ?>
+                                    <?php echo $profit ?? 0 . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
@@ -164,26 +171,31 @@ require './backend/db.php';
                                 <canvas id="profitChart" height="150px" class="-ml-5 dark:text-white">
                                 </canvas>
                                 <?php
-                                $year = explode("-", date('Y-m-d'))[0];
-                                $query = $conn->query("
+$year = explode("-", date('Y-m-d'))[0];
+$query = $conn->query("
                                 SELECT
-                                MONTHNAME(date) AS month,
-                                m.name,
-                                (s.sub_price - (s.quan * m.purchase_price)) AS profit
-                                FROM
-                                `cash_payment_pharm` s
-                                INNER JOIN
-                                `meds` m on s.id = m.med_id
-                                WHERE YEAR(s.date) = '$year'
-                                GROUP BY month ORDER BY `date` ASC
+    MONTHNAME(s.date) AS month,
+    m.name,
+    SUM(s.sub_price - (s.quan * m.purchase_price)) AS profit
+FROM
+    `pharmacy_sale` s
+INNER JOIN
+    `medicines` m ON s.id = m.med_id
+WHERE
+    YEAR(s.date) = '$year' AND s.payment != 'Credit'
+GROUP BY
+   month
+ORDER BY
+    s.date ASC;
+
   ");
 
-                                foreach ($query as $data) {
-                                    $months[] = $data['month'];
-                                    $amounts[] = $data['profit'];
-                                }
+foreach ($query as $data) {
+    $months[] = $data['month'];
+    $amounts[] = $data['profit'];
+}
 
-                                ?>
+?>
                             </div>
                         </div>
                         <!-- ====== Chart One End -->
@@ -301,7 +313,7 @@ require './backend/db.php';
         })
 
         function fetchYears() {
-            fetch('http://localhost/pharm_store/api/getYears.php')
+            fetch('https://www.store.drhibistpedriatician.com/api/getYears.php')
                 .then(response => response.json())
                 .then(data => {
                     let yearDropDown = document.getElementById('selectYear')
@@ -312,20 +324,20 @@ require './backend/db.php';
                         option.textContent = year;
                         yearDropDown.appendChild(option);
                     })
-                     let selectedYear = document.getElementById('selectYear').value;
-                     if(!selectedYear){
+                    let selectedYear = document.getElementById('selectYear').value;
+                    if (!selectedYear) {
                         selectedYear = new Date().getFullYear();
                         yearDropDown.value = selectedYear
-                     }
+                    }
                     fetchMonths(selectedYear)
                 })
                 .catch(error => console.log(error))
         }
 
         function fetchMonths(selectedYear) {
-            // let selectedYear = document.getElementById('selectYear').value;
-            // if (!selectedYear) return false;
-            fetch(`http://localhost/pharm_store/api/testing.php?year=${selectedYear}`)
+            let year = document.getElementById('selectYear');
+            year.value = selectedYear
+            fetch(`https://www.store.drhibistpedriatician.com/api/testing.php?year=${year.value}`)
                 .then(response => response.json())
                 .then(data => {
                     let monthContainer = document.getElementById('monthContainer')

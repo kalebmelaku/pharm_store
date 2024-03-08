@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
             while ($stat = mysqli_fetch_assoc($res)) {
                 $state = $stat['status'];
                 if ($state == 1) {
-                    header("Location: ../home.php");
+                    header("Location: ../report.php");
                 } else {
                     header("Location: ../index.php?msg=Access Denied");
                 }
@@ -29,6 +29,6 @@ if (isset($_POST['submit'])) {
     } else {
         header("Location: ../index.php?msg=Email or Password is incorrect");
     }
-}else{
+} else {
     echo 'not set';
 }

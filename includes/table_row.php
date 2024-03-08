@@ -18,7 +18,7 @@
 		</p>
 	</td>
 	<?php
-	if ($pageName == 'invoice_detail') {
+	if ($pageName == 'invoice_detail' || $pageName == 'expired') {
 	?>
 		<td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
 			<span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Purchase $</span>

@@ -35,6 +35,21 @@
 							Inventory
 						</a>
 					</li> -->
+				<li class="<?php if ($page == 'report') {
+								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+							} else {
+								echo 'mb-4 w-full text-white hover:bg-graydark';
+							} ?>">
+					<a class="<?php if ($page == 'report') {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./report.php">
+						<i class="fa-solid fa-house"></i>
+						Home
+
+					</a>
+				</li>
 				<li class="<?php if ($page == 'home') {
 								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 							} else {
@@ -65,11 +80,11 @@
 
 					</a>
 				</li>
-				<li class="<?php if ($page == 'sell') {
-								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
-							} else {
-								echo 'mb-4 w-full text-white hover:bg-graydark';
-							} ?>">
+				<!-- <li class="<?php if ($page == 'sell') {
+									echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+								} else {
+									echo 'mb-4 w-full text-white hover:bg-graydark';
+								} ?>">
 					<a class="<?php if ($page == 'sell') {
 									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
 								} else {
@@ -79,7 +94,7 @@
 						Sell
 
 					</a>
-				</li>
+				</li> -->
 				<li class="<?php if ($page == 'expired') {
 								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 							} else {
@@ -92,6 +107,22 @@
 								} ?>" href="./expired.php">
 						<i class="fa-solid fa-calendar-xmark"></i>
 						Expiring Soon
+
+					</a>
+				</li>
+
+				<li class="<?php if ($page == 'sales') {
+								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+							} else {
+								echo 'mb-4 w-full text-white hover:bg-graydark';
+							} ?>">
+					<a class="<?php if ($page == 'sales') {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./sales.php">
+						<i class="fa-solid fa-book"></i>
+						Daily Sale
 
 					</a>
 				</li>
@@ -140,12 +171,12 @@
 
 					</a>
 				</li>
-				<ul class="<?php if($page == 'settings'){
-					echo 'flex ml-4 flex-col';
-				}else{
-					echo 'flex ml-4 flex-col hidden';
-				} ?>" id="configs">
-					<li class="mb-4 w-full text-white hover:bg-graydark">
+				<ul class="<?php if ($page == 'settings') {
+								echo 'flex ml-4 flex-col';
+							} else {
+								echo 'flex ml-4 flex-col hidden';
+							} ?>" id="configs">
+					<!-- <li class="mb-4 w-full text-white hover:bg-graydark">
 
 						<a class="<?php if ($page == 'settings') {
 										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
@@ -155,7 +186,7 @@
 							<i class="fa-solid fa-gear"></i>
 							Payments
 						</a>
-					</li>
+					</li> -->
 					<li class="mb-4 w-full text-white hover:bg-graydark">
 						<a class="<?php if ($page == 'settings') {
 										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
@@ -184,21 +215,7 @@
 
 					</a>
 				</li>
-				<li class="<?php if ($page == 'report') {
-								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
-							} else {
-								echo 'mb-4 w-full text-white hover:bg-graydark';
-							} ?>">
-					<a class="<?php if ($page == 'report') {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-								} else {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-								} ?>" href="./report.php">
-						<i class="fa-solid fa-right-from-bracket"></i>
-						Report
 
-					</a>
-				</li>
 
 			</ul>
 	</div>

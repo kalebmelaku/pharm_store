@@ -50,7 +50,7 @@
         if ($status == 0) {
 
             //   "delQueue(\''. $result['id']. '\')"
-            echo '<button onclick="modal(' . $invoice_no . ', \'' . $name . '\', ' . $total . ')" data-modal-target="default-modal" data-modal-toggle="default-modal" class="border-0 text-white bg-secondary px-4 py-1 hover:bg-primary transition-all ease-in duration-200" type="button">
+            echo '<button onclick="modal(\'' . $invoice_no . '\', \'' . $name . '\', ' . $total . ')" data-modal-target="default-modal" data-modal-toggle="default-modal" class="border-0 text-white bg-secondary px-4 py-1 hover:bg-primary transition-all ease-in duration-200" type="button">
         Pay
     </button>';
         } else {
