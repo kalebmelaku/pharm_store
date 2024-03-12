@@ -4,11 +4,12 @@ $med_id = $_POST['med_id'];
 if (isset($_POST['updateBtn'])) {
     $name = $_POST['name'];
     $type = $_POST['type'];
+    $amount = $_POST['amount'];
     $price = $_POST['purchasePrice'];
     $expDate = $_POST['expDate'];
     $now = date('Y-m-d');
     // echo $price;
-    $update = $conn->query("UPDATE `medicines` SET `name`='$name',`type`='$type',`sell_price`='$price',`exdate`='$expDate' WHERE `med_id` = '$med_id'");
+    $update = $conn->query("UPDATE `medicines` SET `name`='$name',`type`='$type',`amount` = '$amount', `sell_price`='$price',`exdate`='$expDate' WHERE `med_id` = '$med_id'");
     if (!$update) {
         header("Location: ../updatePharmacy.php?msg=Unable to Update Item&status=401&id=$med_id");
     } else {

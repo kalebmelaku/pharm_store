@@ -132,8 +132,8 @@ require './backend/auth.php';
 										$amount = $row['amount'];
 										// $purchase = $row['cost'];
 										$sell_price = $row['sell_price'];
-										$reg_date = $row['reg_date'];
-										$exp_date = $row['ex_date'];
+										$reg_date = $row['date'];
+										$exp_date = $row['exdate'];
 										$pageName = '';
 										include './includes/pharmacy_table.php';
 									}

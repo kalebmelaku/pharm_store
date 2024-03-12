@@ -14,7 +14,7 @@ while ($row = $sql->fetch_assoc()) {
 	// $org_price = $row['cost'];
 	$sell_price = $row['sell_price'];
 	// $reg_date = $row['date'];
-	$exp_date = $row['ex_date'];
+	$exp_date = $row['exdate'];
 }
 
 ?>
@@ -111,21 +111,21 @@ while ($row = $sql->fetch_assoc()) {
 											<input readonly required name="expDate" type="date" value="<?php echo $exp_date; ?>" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
 										</div>
 									</div>
-									<!-- <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
-										<div class="w-full xl:w-1/2">
+									<div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+										<div class="w-full">
 											<label class="mb-2.5 block text-black dark:text-white">
-												Selling Price
+												Amount
 											</label>
-											<input required type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" value="<?php echo $sell_price; ?>" />
+											<input required type="text" name="amount" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" value="<?php echo $amount; ?>" />
 										</div>
 
-										<div class="w-full ">
+										<!-- <div class="w-full ">
 											<label class="mb-2.5 block text-black dark:text-white">
 												Expire Date
 											</label>
 											<input required name="expDate" type="date" value="<?php echo $exp_date; ?>" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
-										</div>
-									</div> -->
+										</div> -->
+									</div>
 									<div class="mb-2 flex flex-col gap-6 xl:flex-row">
 										<input type="hidden" name="med_id" value="<?php echo $id; ?>">
 										<div class="w-full xl:w-1/2">
