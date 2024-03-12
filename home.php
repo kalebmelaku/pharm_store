@@ -1,5 +1,7 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
+$sql2 = $conn->query("DELETE FROM `pharmacy_sale` WHERE `quan` = 0");
 ?>
 <!DOCTYPE html>
 <html lang="en">

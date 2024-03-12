@@ -187,17 +187,36 @@
 							Payments
 						</a>
 					</li> -->
-					<li class="mb-4 w-full text-white hover:bg-graydark">
-						<a class="<?php if ($page == 'settings') {
-										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-									} else {
-										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-									} ?>" href="./password.php">
-							<i class="fa-solid fa-lock"></i>
-							Password
+					<li class="<?php if ($page == 'settings' && $curr == 'password') {
+								echo 'mb-4 w-full bg-secondary dark:bg-secondary text-white bg-graydark';
+							} else {
+								echo 'mb-4 w-full text-white hover:bg-graydark';
+							} ?>">
+					<a class="<?php if ($page == 'settings' && $curr == 'password') {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./password.php">
+						<i class="fa-solid fa-lock"></i>
+						Password
 
-						</a>
-					</li>
+					</a>
+				</li>
+					<li class="<?php if ($page == 'settings' && $curr == 'return') {
+								echo 'mb-4 w-full bg-secondary dark:bg-secondary text-white bg-graydark';
+							} else {
+								echo 'mb-4 w-full text-white hover:bg-graydark';
+							} ?>">
+					<a class="<?php if ($page == 'settings' && $curr == 'return') {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./return.php">
+						<i class="fa-solid fa-rotate-left"></i>
+						Return Sale
+
+					</a>
+				</li>
 
 				</ul>
 				<li class="<?php if ($page == 'logout') {

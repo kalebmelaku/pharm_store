@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 
 ?>
 <!DOCTYPE html>
@@ -189,7 +190,7 @@ require './backend/db.php';
                             </p>
                         </td>
                     </tr>
-                    <?php
+                <?php
                                 }
                             } else {
                                 $total_report = $conn->query("SELECT 
@@ -202,36 +203,36 @@ require './backend/db.php';
                             GROUP BY 
                                 payment;
                             ");
-                                            echo ' <div class="sm:w-1/2 mx-auto mb-4 rounded-lg border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">';
-            
-                                            $total = 0;
-                                            while ($rs = $total_report->fetch_assoc()) {
-                                                $total_payment = $rs['total_amount'];
-                                                $payment_type = $rs['payment'];
-                                                $total += $total_payment;
-                                        ?>
-            
-                                                <div class="mt-4 flex items-end justify-between">
-                                                    <h4 class="text-lg font-light text-black dark:text-white">
-                                                        <?php echo $payment_type; ?>
-                                                    </h4>
-                                                    <span class="text-lg dark:text-white font-bold">
-                                                        <?php echo $total_payment . " Birr"; ?>
-                                                    </span>
-                                                </div>
-                                            <?php
-                                            }
-                                            ?>
-                                            <div class="mt-4 flex items-end justify-between">
-                                                <h4 class="text-lg font-light text-black dark:text-white">
-                                                    <?php echo "Total"; ?>
-                                                </h4>
-                                                <span class="text-lg dark:text-white font-bold">
-                                                    <?php echo $total . " Birr"; ?>
-                                                </span>
-                                            </div>
-                            </div>
-                            <?php
+                                echo ' <div class="sm:w-1/2 mx-auto mb-4 rounded-lg border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">';
+
+                                $total = 0;
+                                while ($rs = $total_report->fetch_assoc()) {
+                                    $total_payment = $rs['total_amount'];
+                                    $payment_type = $rs['payment'];
+                                    $total += $total_payment;
+                ?>
+
+                    <div class="mt-4 flex items-end justify-between">
+                        <h4 class="text-lg font-light text-black dark:text-white">
+                            <?php echo $payment_type; ?>
+                        </h4>
+                        <span class="text-lg dark:text-white font-bold">
+                            <?php echo $total_payment . " Birr"; ?>
+                        </span>
+                    </div>
+                <?php
+                                }
+                ?>
+                <div class="mt-4 flex items-end justify-between">
+                    <h4 class="text-lg font-light text-black dark:text-white">
+                        <?php echo "Total"; ?>
+                    </h4>
+                    <span class="text-lg dark:text-white font-bold">
+                        <?php echo $total . " Birr"; ?>
+                    </span>
+                </div>
+        </div>
+        <?php
                                 $sql = $conn->query("SELECT * FROM `pharmacy_sale` WHERE `date` = '$search' ORDER BY `name` ASC");
                                 if ($sql->num_rows > 0) {
                                     while ($row = $sql->fetch_assoc()) {
@@ -242,86 +243,86 @@ require './backend/db.php';
                                         $total_price = $row['sub_price'];
                                         $saleType = $row['payment'];
                                         $sale_date = $row['date'];
-                    ?>
-                        <tr class=" lg:flex-no-wrap mb-10 flex flex-row flex-wrap lg:mb-0 lg:table-row lg:flex-row">
-                            <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
-                                <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Name</span>
-                                <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
-                                    <?php echo $name; ?>
-                                </p>
-                            </td>
-                            <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
-                                <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Type</span>
-                                <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
-                                    <?php echo $type; ?>
-                                </p>
-                            </td>
-                            <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
-                                <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Amount</span>
-                                <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
-                                    <?php echo $amount; ?>
-                                </p>
-                            </td>
-                            <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
-                                <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Total</span>
-                                <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
-                                    <?php echo $total_price; ?>
-                                </p>
-                            </td>
-                            <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
-                                <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Sale Type</span>
-                                <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
-                                    <?php echo $saleType; ?>
-                                </p>
-                            </td>
-                            <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
-                                <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Date</span>
-                                <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
-                                    <?php echo $sale_date; ?>
-                                </p>
-                            </td>
-                        </tr>
-                    <?php
+        ?>
+                <tr class=" lg:flex-no-wrap mb-10 flex flex-row flex-wrap lg:mb-0 lg:table-row lg:flex-row">
+                    <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
+                        <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Name</span>
+                        <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
+                            <?php echo $name; ?>
+                        </p>
+                    </td>
+                    <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
+                        <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Type</span>
+                        <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
+                            <?php echo $type; ?>
+                        </p>
+                    </td>
+                    <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
+                        <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Amount</span>
+                        <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
+                            <?php echo $amount; ?>
+                        </p>
+                    </td>
+                    <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
+                        <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Total</span>
+                        <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
+                            <?php echo $total_price; ?>
+                        </p>
+                    </td>
+                    <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
+                        <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Sale Type</span>
+                        <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
+                            <?php echo $saleType; ?>
+                        </p>
+                    </td>
+                    <td class="text-gray-800 dark:text-white relative w-full flex justify-between border border-b border-bodydark2 p-3 md:block lg:static lg:table-cell lg:w-auto">
+                        <span class=" px-2 py-1 text-center text-xs font-bold uppercase lg:hidden">Date</span>
+                        <p class="medicineName break-words ml-8 md:ml-0 md:text-left  capitalize">
+                            <?php echo $sale_date; ?>
+                        </p>
+                    </td>
+                </tr>
+            <?php
                                     }
                                 } else {
                                     $search_result = 0;
-                    ?>
-                    <h1 class="text-center text-2xl text-black dark:text-white">Item Not Found</h1>
-                    <h1 class="text-center text-2xl text-black dark:text-white">Please Check The Name Again</h1>
-            <?php
+            ?>
+            <h1 class="text-center text-2xl text-black dark:text-white">Item Not Found</h1>
+            <h1 class="text-center text-2xl text-black dark:text-white">Please Check The Name Again</h1>
+    <?php
                                 }
                             }
-            ?>
-            </tbody>
-            </table>
-            <!-- table end -->
-            <!-- component pagination -->
-            <div class="<?php if (empty($search)) {
-                            echo 'mt-8 flex justify-center flex-wrap wrap';
-                        } else {
-                            echo 'mt-8 flex justify-center hidden';
-                        } ?>">
-                <nav aria-label="Page navigation example">
-                    <ul class="list-style-none flex">
-                        <?php
-                        for ($page = 1; $page <= $number_of_pages; $page++) {
-                        ?>
-                            <li class="page-item">
-                                <a class="page-link hover:text-gray-800 hover:bg-gray-200 relative block rounded border-0 bg-transparent py-1.5 px-3 text-boxdark-2 outline-none transition-all duration-300 focus:shadow-none dark:text-whiter" href="home.php?page=<?php echo $page; ?>"><?php echo $page; ?></a>
-                            </li>
-                        <?php
-                        }
-                        ?>
-                    </ul>
-                </nav>
-            </div>
+    ?>
+    </tbody>
+    </table>
+    <!-- table end -->
+    <!-- component pagination -->
+    <div class="<?php if (empty($search)) {
+                    echo 'mt-8 flex justify-center flex-wrap wrap';
+                } else {
+                    echo 'mt-8 flex justify-center hidden';
+                } ?>">
+        <nav aria-label="Page navigation example">
+            <ul class="list-style-none flex">
+                <?php
+                for ($page = 1; $page <= $number_of_pages; $page++) {
+                ?>
+                    <li class="page-item">
+                        <a class="page-link hover:text-gray-800 hover:bg-gray-200 relative block rounded border-0 bg-transparent py-1.5 px-3 text-boxdark-2 outline-none transition-all duration-300 focus:shadow-none dark:text-whiter" href="home.php?page=<?php echo $page; ?>"><?php echo $page; ?></a>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+        </nav>
+    </div>
 
 
 
 
 
-        </div>
-        </main>
+    </div>
+    </main>
     </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

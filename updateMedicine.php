@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 $id = $_GET['id'];
 if (empty($id)) {
 	header("Location: ./home.php");
@@ -35,7 +36,7 @@ while ($row = $sql->fetch_assoc()) {
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
 	<div class="flex h-screen overflow-hidden">
-		<?php 
+		<?php
 		$page = 'home';
 		include './includes/sidebar.php'; ?>
 		<div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">

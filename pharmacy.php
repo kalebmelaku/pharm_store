@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

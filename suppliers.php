@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 $select = $conn->query('SELECT `status` FROM `suppliers`');
 $rs = $select->fetch_assoc();
 $payStatus = @$rs['status']

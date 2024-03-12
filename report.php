@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 
 ?>
 <!DOCTYPE html>
@@ -35,11 +36,11 @@ require './backend/db.php';
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
     <div class="flex h-screen overflow-hidden">
         <?php
-$page = 'report';
-include './includes/sidebar.php';
-?>
+        $page = 'report';
+        include './includes/sidebar.php';
+        ?>
         <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-            <?php include './includes/header.php';?>
+            <?php include './includes/header.php'; ?>
 
             <main>
 
@@ -51,16 +52,16 @@ include './includes/sidebar.php';
                             <div class=" flex flex-col gap-6 xl:flex-row">
                                 <div class="w-full xl:w-1/2">
                                     <input name="date" type="month" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" value="<?php
-if (isset($_GET['date'])) {
-    $date = $_GET['date'];
-    echo $date;
-} else {
-    $date = date("Y-m-d");
-    $month_num = explode('-', $date)[1];
-    $year = explode('-', $date)[0];
-    echo $year . '-' . $month_num;
-}
-?>" />
+                                                                                                                                                                                                                                                                                                                                                            if (isset($_GET['date'])) {
+                                                                                                                                                                                                                                                                                                                                                                $date = $_GET['date'];
+                                                                                                                                                                                                                                                                                                                                                                echo $date;
+                                                                                                                                                                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                                                                                                                                                                $date = date("Y-m-d");
+                                                                                                                                                                                                                                                                                                                                                                $month_num = explode('-', $date)[1];
+                                                                                                                                                                                                                                                                                                                                                                $year = explode('-', $date)[0];
+                                                                                                                                                                                                                                                                                                                                                                echo $year . '-' . $month_num;
+                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                            ?>" />
                                 </div>
                                 <div class="w-full xl:w-1/2">
                                     <input type="submit" value="Search" name="search" class="w-full bg-primary hover:bg-secondary hover:cursor-pointer rounded text-white py-3 px-5 font-medium outline-none transition" />
@@ -71,21 +72,21 @@ if (isset($_GET['date'])) {
 
                     </form>
                     <?php
-$date = date("Y-m-d");
-if ((!isset($_GET['search']))) {
-    $month_num = explode('-', $date)[1];
-    $year = explode('-', $date)[0];
-} else {
-    if ($_GET['date'] == '') {
-        $month_num = explode('-', $date)[1];
-        $year = explode('-', $date)[0];
-    } else {
-        $month_num = explode('-', $_GET['date'])[1];
-        $year = explode('-', $_GET['date'])[0];
-    }
-}
-include './includes/report.php';
-?>
+                    $date = date("Y-m-d");
+                    if ((!isset($_GET['search']))) {
+                        $month_num = explode('-', $date)[1];
+                        $year = explode('-', $date)[0];
+                    } else {
+                        if ($_GET['date'] == '') {
+                            $month_num = explode('-', $date)[1];
+                            $year = explode('-', $date)[0];
+                        } else {
+                            $month_num = explode('-', $_GET['date'])[1];
+                            $year = explode('-', $_GET['date'])[0];
+                        }
+                    }
+                    include './includes/report.php';
+                    ?>
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
                         <!-- Card Item Start -->
                         <div class="rounded-lg border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -171,8 +172,8 @@ include './includes/report.php';
                                 <canvas id="profitChart" height="150px" class="-ml-5 dark:text-white">
                                 </canvas>
                                 <?php
-$year = explode("-", date('Y-m-d'))[0];
-$query = $conn->query("
+                                $year = explode("-", date('Y-m-d'))[0];
+                                $query = $conn->query("
                                 SELECT
     MONTHNAME(s.date) AS month,
     m.name,
@@ -190,12 +191,12 @@ ORDER BY
 
   ");
 
-foreach ($query as $data) {
-    $months[] = $data['month'];
-    $amounts[] = $data['profit'];
-}
+                                foreach ($query as $data) {
+                                    $months[] = $data['month'];
+                                    $amounts[] = $data['profit'];
+                                }
 
-?>
+                                ?>
                             </div>
                         </div>
                         <!-- ====== Chart One End -->

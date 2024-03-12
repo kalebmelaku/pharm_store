@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 $step = @$_GET['step'];
 $invoice_number = @$_GET['invoice_number'];
 $quantity = @$_GET['quantity'];

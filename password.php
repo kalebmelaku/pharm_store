@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -23,6 +24,7 @@ session_start();
     <div class="flex h-screen overflow-hidden">
         <?php
         $page = 'settings';
+        $curr = 'password';
         include './includes/sidebar.php'; ?>
         <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
             <?php include './includes/header.php'; ?>
@@ -39,7 +41,7 @@ session_start();
                             <li class="leading-relaxed text-white">
                                 <p id="error-text">
                                     <?php
-                                    
+
                                     $email = $_SESSION['user'];
                                     $msg = @$_REQUEST['msg'];
                                     $lout = @$_REQUEST['lout'];
@@ -57,7 +59,7 @@ session_start();
                     <div class="flex items-center justify-center">
                         <form class="bg-white text-dark dark:bg-boxdark mb-4 rounded flex flex-col w-1/2" action="./backend/changePass.php" method="POST">
                             <div class="p-6.5">
-                            <div class="text-center text-xl mb-5 dark:text-white text-black">Change Password</div>
+                                <div class="text-center text-xl mb-5 dark:text-white text-black">Change Password</div>
                                 <div class="w-full mb-4">
                                     <label class="mb-2.5 block text-black dark:text-white">
                                         Current Password
@@ -94,28 +96,7 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 
     <script src="./script/app.js"></script>
-    <script>
-        const table = document.querySelector('table');
-        const searchResult = document.getElementById('searchResult');
-        const invoiceInput = document.getElementById('invoiceInput');
-        const invoiceName = document.getElementById('invoiceName');
-        const invoiceTotal = document.getElementById('invoiceTotal');
-        const referenceNo = document.getElementById('referenceNo');
-        const refCont = document.getElementById('refCont');
-        const paymentMethod = document.getElementById('paymentMethod');
-        if (table.lastElementChild.innerText == '') {
-            table.classList.add('hidden');
-        } else {
-            table.classList.remove('hidden');
-        }
 
-        function modal(id, name, total) {
-            invoiceInput.value = id;
-            invoiceName.value = name;
-            invoiceTotal.value = total;
-
-        }
-    </script>
 </body>
 
 </html>

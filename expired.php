@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +21,9 @@ require './backend/db.php';
 
 	<div class="flex h-screen overflow-hidden">
 
-		<?php 
-		$page = 'expired';include './includes/sidebar.php'; ?>
+		<?php
+		$page = 'expired';
+		include './includes/sidebar.php'; ?>
 
 		<div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 			<?php include './includes/header.php'; ?>

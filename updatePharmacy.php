@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 $id = $_GET['id'];
 if (empty($id)) {
 	header("Location: ./home.php");

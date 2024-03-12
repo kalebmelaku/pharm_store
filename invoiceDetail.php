@@ -1,5 +1,6 @@
 <?php
 require './backend/db.php';
+require './backend/auth.php';
 $invoice_no = $_GET['id'];
 if (empty($invoice_no)) {
     header("Location: ./suppliers.php");
