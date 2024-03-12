@@ -89,7 +89,7 @@ while ($row = $sql->fetch_assoc()) {
                                             <label class="mb-2.5 block text-black dark:text-white">
                                                 Selling Price
                                             </label>
-                                            <input required name="price" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" value="<?php echo $purchase_price; ?>" />
+                                            <input required name="price" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" value="<?php echo $sell_price; ?>" />
                                         </div>
                                     </div>
                                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">

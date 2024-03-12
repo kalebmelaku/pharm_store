@@ -36,6 +36,7 @@ if (isset($_POST['send'])) {
 
                 $insert = $conn->query("INSERT INTO `medicines`(`med_id`,`name`, `type`, `amount`, `sell_price`, `purchase_price`, `exdate`) VALUES ('$medid','$name','$type','$amount','$sellPrice', '$price', '$exp_date')");
                 if ($insert) {
+                    $conn->query("UPDATE `pharm_store` SET `sell_price`='$sellPrice' WHERE `id` = '$medid' ");
                     header("Location: ../sendMedicine.php?msg=Medicine Sent to Pharmacy&id=$medid&status=200");
                 } else {
                     echo $conn->error;

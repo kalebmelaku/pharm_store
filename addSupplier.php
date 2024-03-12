@@ -94,7 +94,7 @@ $quantity = @$_GET['quantity'];
                                             <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                                                 <div class="w-full xl:w-1/2">
                                                     <label class="mb-2.5 block text-black dark:text-white">
-                                                        Medicine <?php echo $i; ?> Price
+                                                        Medicine <?php echo $i; ?> Purchase Price
                                                     </label>
                                                     <input required name="price<?php echo $i; ?>" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary price" />
                                                 </div>
@@ -106,11 +106,17 @@ $quantity = @$_GET['quantity'];
                                                 </div>
                                             </div>
                                             <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                                                <div class="w-full">
+                                                <div class="w-full xl:w-1/2">
                                                     <label class="mb-2.5 block text-black dark:text-white">
                                                         Medicine <?php echo $i; ?> Quantity
                                                     </label>
-                                                    <input required name="quantity<?php echo $i; ?>" type="text" class="quantity w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+                                                    <input required name="quantity<?php echo $i; ?>" type="text" class="quantity w-full  rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+                                                </div>
+                                                <div class="w-full xl:w-1/2">
+                                                    <label class="mb-2.5 block text-black dark:text-white">
+                                                        Medicine <?php echo $i; ?> Sell Price
+                                                    </label>
+                                                    <input required name="sell_price<?php echo $i; ?>" type="text" class="quantity w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                                                 </div>
 
                                             </div>
@@ -145,7 +151,10 @@ $quantity = @$_GET['quantity'];
                                             Type
                                         </th>
                                         <th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
-                                            Price
+                                            Purchase Price
+                                        </th>
+                                        <th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
+                                            Sell Price
                                         </th>
                                         <th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
                                             Quantity
@@ -174,7 +183,8 @@ $quantity = @$_GET['quantity'];
                                             $id = $row['id'];
                                             $name = $row['name'];
                                             $type = $row['type'];
-                                            $price = $row['price'];
+                                            $price = $row['purchase_price'];
+                                            $sell_price = $row['sell_price'];
                                             $quantity = $row['quantity'];
                                             $exdate = $row['exdate'];
                                             $reg_date = $row['created_at'];
@@ -198,6 +208,12 @@ $quantity = @$_GET['quantity'];
                                                     <span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Payment</span>
                                                     <p class="break-words">
                                                         <?php echo $price; ?>
+                                                    </p>
+                                                </td>
+                                                <td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
+                                                    <span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Payment</span>
+                                                    <p class="break-words">
+                                                        <?php echo $sell_price; ?>
                                                     </p>
                                                 </td>
                                                 <td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
