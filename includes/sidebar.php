@@ -141,6 +141,36 @@
 
 					</a>
 				</li>
+				<li class="<?php if ($page == 'admission') {
+								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+							} else {
+								echo 'mb-4 w-full text-white hover:bg-graydark';
+							} ?>">
+					<a class="<?php if ($page == 'admission') {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./admission.php">
+						<i class="fa-solid fa-bed"></i>
+						Admission
+
+					</a>
+				</li>
+				<li class="<?php if ($page == 'credit') {
+								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+							} else {
+								echo 'mb-4 w-full text-white hover:bg-graydark';
+							} ?>">
+					<a class="<?php if ($page == 'credit') {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./credit.php">
+						<i class="fa-solid fa-hands-bound"></i>
+						Credit
+
+					</a>
+				</li>
 				<!-- <li class="<?php if ($page == 'unpaid') {
 									echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 								} else {
