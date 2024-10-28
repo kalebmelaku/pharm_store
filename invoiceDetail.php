@@ -72,7 +72,7 @@ if (empty($invoice_no)) {
                                         $name = $row['name'];
                                         $type = $row['type'];
                                         $amount = $row['quantity'];
-                                        $purchase = $row['price'];
+                                        $purchase = $row['purchase_price'];
                                         $reg_date = $row['created_at'];
                                         $pageName = 'invoice_detail';
                                         include './includes/table_row.php';
