@@ -1,3 +1,11 @@
+<?php
+require './backend/db.php';
+$user_email = $_SESSION['user'];
+$sql = $conn->query("SELECT * FROM `pharm_user` WHERE `email` = '$user_email'");
+$rs = $sql->fetch_assoc();
+$status = $rs['status'];
+
+?>
 <aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'" class="absolute left-0 top-0 z-9999 flex h-screen w-52.5 flex-col overflow-y-hidden bg-white duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0" @click.outside="sidebarToggle = false">
 	<!-- SIDEBAR HEADER -->
 	<div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
@@ -80,6 +88,14 @@
 
 					</a>
 				</li>
+				<?php if ($status == 2): ?>
+					<li class="<?php echo ($page == 'approve') ? 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark' : 'mb-4 w-full text-white hover:bg-graydark'; ?>">
+						<a class="<?php echo ($page == 'approve') ? 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4' : 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4'; ?>" href="./approve.php">
+							<i class="fa-solid fa-circle-check"></i>
+							Approve
+						</a>
+					</li>
+				<?php endif; ?>
 				<!-- <li class="<?php if ($page == 'sell') {
 									echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 								} else {
@@ -218,35 +234,35 @@
 						</a>
 					</li> -->
 					<li class="<?php if ($page == 'settings' && $curr == 'password') {
-								echo 'mb-4 w-full bg-secondary dark:bg-secondary text-white bg-graydark';
-							} else {
-								echo 'mb-4 w-full text-white hover:bg-graydark';
-							} ?>">
-					<a class="<?php if ($page == 'settings' && $curr == 'password') {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									echo 'mb-4 w-full bg-secondary dark:bg-secondary text-white bg-graydark';
 								} else {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-								} ?>" href="./password.php">
-						<i class="fa-solid fa-lock"></i>
-						Password
+									echo 'mb-4 w-full text-white hover:bg-graydark';
+								} ?>">
+						<a class="<?php if ($page == 'settings' && $curr == 'password') {
+										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									} else {
+										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									} ?>" href="./password.php">
+							<i class="fa-solid fa-lock"></i>
+							Password
 
-					</a>
-				</li>
+						</a>
+					</li>
 					<li class="<?php if ($page == 'settings' && $curr == 'return') {
-								echo 'mb-4 w-full bg-secondary dark:bg-secondary text-white bg-graydark';
-							} else {
-								echo 'mb-4 w-full text-white hover:bg-graydark';
-							} ?>">
-					<a class="<?php if ($page == 'settings' && $curr == 'return') {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									echo 'mb-4 w-full bg-secondary dark:bg-secondary text-white bg-graydark';
 								} else {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-								} ?>" href="./return.php">
-						<i class="fa-solid fa-rotate-left"></i>
-						Return Sale
+									echo 'mb-4 w-full text-white hover:bg-graydark';
+								} ?>">
+						<a class="<?php if ($page == 'settings' && $curr == 'return') {
+										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									} else {
+										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+									} ?>" href="./return.php">
+							<i class="fa-solid fa-rotate-left"></i>
+							Return Sale
 
-					</a>
-				</li>
+						</a>
+					</li>
 
 				</ul>
 				<li class="<?php if ($page == 'logout') {

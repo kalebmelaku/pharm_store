@@ -11,7 +11,7 @@ require './backend/auth.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
-	<title>Pharmacy</title>
+	<title>Approve</title>
 	<link rel="icon" href="favicon.ico">
 	<link href="./style/style.css" rel="stylesheet">
 	<link href="./style/alert.css" rel="stylesheet">
@@ -23,7 +23,7 @@ require './backend/auth.php';
 
 	<div class="flex h-screen overflow-hidden">
 		<?php
-		$page = 'pharmacy';
+		$page = 'approve';
 		include './includes/sidebar.php'; ?>
 		<div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 			<?php include './includes/header.php'; ?>
@@ -60,17 +60,17 @@ require './backend/auth.php';
 							</button>
 						</form>
 					</div>
-					<div class="export flex items-center justify-end my-2">
+					<!-- <div class="export flex items-center justify-end my-2">
 						<a href="./backend/export.php?page=pharmacy" class="text-sm md:text-lg  cursor-pointer rounded-lg bg-secondary py-4 px-16 font-medium text-white transition hover:bg-opacity-90">
 							Export
 						</a>
-					</div>
+					</div> -->
 					<?php
 					$results_per_page = 15;
 					$search_result = 1;
 					$search = $_GET['search'] ?? '';
 					// find out the number of results stored in database
-					$sql = 'SELECT * FROM `medicines` WHERE `approved` = 1 ';
+					$sql = 'SELECT * FROM `medicines` WHERE `approved` = 0 ';
 					$result = mysqli_query($conn, $sql);
 					$number_of_results = mysqli_num_rows($result);
 
@@ -115,7 +115,7 @@ require './backend/auth.php';
 
 							// retrieve selected results from database and display them on page
 							if (empty($search)) {
-								$sql = $conn->query('SELECT * FROM `medicines` WHERE `approved` = 1 ORDER BY `name` ASC LIMIT ' . $this_page_first_result . ',' . $results_per_page);
+								$sql = $conn->query('SELECT * FROM `medicines` WHERE `approved` = 0 ORDER BY `name` ASC LIMIT ' . $this_page_first_result . ',' . $results_per_page);
 								while ($row = $sql->fetch_assoc()) {
 									$id = $row['med_id'];
 									$name = $row['name'];
@@ -123,11 +123,11 @@ require './backend/auth.php';
 									$amount = $row['amount'];
 									$sell_price = $row['sell_price'];
 									$exp_date = $row['exdate'];
-									$pageName = '';
+									$pageName = 'approve';
 									include './includes/pharmacy_table.php';
 								}
 							} else {
-								$sql = $conn->query("SELECT * FROM `medicines` WHERE `approved` = 1 AND `name` LIKE '%$search%' ORDER BY `name` ASC");
+								$sql = $conn->query("SELECT * FROM `medicines` WHERE `approved` = 0 AND `name` LIKE '%$search%' ORDER BY `name` ASC");
 								if ($sql->num_rows > 0) {
 									while ($row = $sql->fetch_assoc()) {
 										$id = $row['med_id'];
@@ -138,7 +138,7 @@ require './backend/auth.php';
 										$sell_price = $row['sell_price'];
 										$reg_date = $row['date'];
 										$exp_date = $row['exdate'];
-										$pageName = '';
+										$pageName = 'approve';
 										include './includes/pharmacy_table.php';
 									}
 								} else {

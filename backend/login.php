@@ -17,11 +17,12 @@ if (isset($_POST['submit'])) {
         if ($res) {
             while ($stat = mysqli_fetch_assoc($res)) {
                 $state = $stat['status'];
-                if ($state == 1) {
-                    header("Location: ../report.php");
-                } else {
-                    header("Location: ../index.php?msg=Access Denied");
-                }
+                header("Location: ../report.php");
+                // if ($state == 1) {
+                //     header("Location: ../report.php");
+                // } else {
+                //     header("Location: ../index.php?msg=Access Denied");
+                // }
             }
         } else {
             echo "error";
