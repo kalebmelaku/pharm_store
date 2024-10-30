@@ -1,9 +1,11 @@
 <?php
 require './db.php';
+
 $year = $_GET['year'];
-$result = $conn->query("SELECT
+
+// Fetch the aggregated totals for cost, revenue, and profit
+$result1 = $conn->query("SELECT
     YEAR(s.date) AS year,
-    m.name,
     SUM(s.quan * m.sell_price) AS cost_price,
     SUM(s.quan * m.purchase_price) AS purchase_price,
     SUM(s.sub_price - (s.quan * m.purchase_price)) AS profit
@@ -13,17 +15,11 @@ INNER JOIN
     `medicines` m ON s.id = m.med_id
 WHERE
     YEAR(s.date) = '$year' AND `payment` != 'Credit'
-GROUP BY
-    year, m.name
-ORDER BY
-    s.date ASC;
-
 ");
-$row = $result->fetch_assoc();
-$profit = $row['profit'];
-$total_cost = $row['purchase_price'];
-$total_revenue = $row['cost_price'];
-
+$row1 = $result1->fetch_assoc();
+$profit = $row1['profit'];
+$total_cost = $row1['purchase_price'];
+$total_revenue = $row1['cost_price'];
 
 // Set the name of the file to be downloaded
 $filename = "data_export_" . date('Ymd') . ".csv";
@@ -34,10 +30,13 @@ header("Content-Type: text/csv; charset=utf-8");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-
 $output = fopen('php://output', 'w');
-// Query to fetch data from the table
 
+// Define the header row and write it
+$headerRow = ['Total Unpaid Suppliers', 'Total Paid Suppliers', 'Total Expense', 'Total Sell', 'Total Net Sell'];
+fputcsv($output, $headerRow);
+
+// Query to fetch the unpaid and paid totals
 $sql = "SELECT 
     SUM(CASE WHEN suppliers.status = 0 THEN suppliers.total_amount ELSE 0 END) AS total_unpaid_amount,
     SUM(CASE WHEN suppliers.status = 1 THEN suppliers_payment.total_amount ELSE 0 END) AS total_paid_amount
@@ -50,26 +49,23 @@ WHERE
     (suppliers.status = 1 AND YEAR(suppliers_payment.date) = '$year');
 ";
 
-
-$result = $conn->query($sql);
+$result2 = $conn->query($sql);
 
 // Check if the query returns any rows
-if ($result->num_rows > 0) {
-    // Fetch the field names (column headers)
-    $fields = $result->fetch_fields();
-    $headerRow = ['Total Unpaid Suppliers', 'Total Paid Suppliers', 'Total Expense', 'Total Net Sell'];
-    fputcsv($output, $headerRow);
-    while ($row = $result->fetch_assoc()) {
+if ($result2->num_rows > 0) {
+    while ($row2 = $result2->fetch_assoc()) {
+        // Prepare the data row with formatted values
         $data = [
-            $row['total_unpaid_amount'] . ' BIRR',
-            $row['total_paid_amount'] . ' BIRR',
-            $total_cost . ' BIRR',
-            $profit . ' BIRR',
+            number_format($row2['total_unpaid_amount'], 2, '.', ',') . ' BIRR',
+            number_format($row2['total_paid_amount'], 2, '.', ',') . ' BIRR',
+            number_format($total_cost, 2, '.', ',') . ' BIRR',
+            number_format($total_revenue, 2, '.', ',') . ' BIRR',
+            number_format($profit, 2, '.', ',') . ' BIRR'
         ];
-        fputcsv($output, $data); // Output the data row by row
+        
+        // Write the data row
+        fputcsv($output, $data);
     }
-    $totalRow = array_fill(0, count($headerRow) - 1, ''); // Empty columns except the last
-    fputcsv($output, $totalRow);
 } else {
     echo "No records found!";
 }
