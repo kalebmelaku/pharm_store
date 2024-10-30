@@ -15,7 +15,7 @@
 										Total $
 									</th>
 				
-									<th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">	
+									<th class=" border-gray-300 hidden border p-3 font-bold uppercase lg:table-cell">
 										Date
 									</th>
 
@@ -29,7 +29,7 @@
 
 								// retrieve selected results from database and display them on page
 								
-                                    $sql = $conn->query("SELECT * FROM `suppliers` WHERE `status` = 1 AND `completed` = 1");
+                                    $sql = $conn->query("SELECT * FROM `suppliers` WHERE `name` LIKE '%$supplier_name%' AND `completed` = 1");
 									if ($sql->num_rows > 0) {
                                         while ($row = $sql->fetch_assoc()) {
                                             $id = $row['id'];
@@ -37,7 +37,6 @@
 											$invoice_no = $row['invoice_no'];
                                             $status = $row['status'];
 											$total = $row['total_amount'];
-											$completed = $row['completed'];
 											$date = $row['date'];
 											$pageName = '';
                                             

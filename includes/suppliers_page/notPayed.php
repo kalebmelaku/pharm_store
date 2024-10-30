@@ -29,13 +29,14 @@
 
 								// retrieve selected results from database and display them on page
 								
-                                    $sql = $conn->query("SELECT * FROM `suppliers` WHERE `status` = 0");
+                                    $sql = $conn->query("SELECT * FROM `suppliers` WHERE `status` = 0 AND `completed` = 1");
 									if ($sql->num_rows > 0) {
                                         while ($row = $sql->fetch_assoc()) {
                                             $id = $row['id'];
 											$name = $row['name'];
 											$invoice_no = $row['invoice_no'];
                                             $status = $row['status'];
+											$completed = $row['completed'];
 											$total = $row['total_amount'];
 											$date = $row['date'];
 											$pageName = '';

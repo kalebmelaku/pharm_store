@@ -44,19 +44,32 @@
         </p>
     </td>
 
-    <td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto">
-        <span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Actions</span>
-        <?php
-        if ($status == 0) {
+    <td class="text-gray-800 dark:text-white relative md:text-center block w-full border border-b p-3 text-right lg:static lg:table-cell lg:w-auto ">
+        <div class="flex items-center justify-start">
+            <span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Actions</span>
+            <?php
+            if ($status == 0) {
 
-            //   "delQueue(\''. $result['id']. '\')"
-            echo '<button onclick="modal(\'' . $invoice_no . '\', \'' . $name . '\', ' . $total . ')" data-modal-target="default-modal" data-modal-toggle="default-modal" class="border-0 text-white bg-secondary px-4 py-1 hover:bg-primary transition-all ease-in duration-200" type="button">
+                //   "delQueue(\''. $result['id']. '\')"
+                echo '<button onclick="modal(\'' . $invoice_no . '\', \'' . $name . '\', ' . $total . ')" data-modal-target="default-modal" data-modal-toggle="default-modal" class="mr-1 border-0 text-white bg-secondary px-4 py-1 hover:bg-primary transition-all ease-in duration-200" type="button">
         Pay
     </button>';
-        } else {
-        }
-        ?>
+            } else {
+            }
 
-        <a href="./invoiceDetail.php?id=<?php echo $invoice_no; ?>" class="text-white  bg-secondary px-4 py-2 hover:bg-primary transition-all ease-in duration-200 ">Detail</a>
+            ?>
+
+            <a href="./invoiceDetail.php?id=<?php echo $invoice_no; ?>" class="border-0 text-white bg-secondary px-4 py-1 hover:bg-primary transition-all ease-in duration-200">Detail</a>
+            <?php
+            if (@$completed == 0) {
+
+                //   "delQueue(\''. $result['id']. '\')"
+                echo '<a href="./backend/continueSupplier.php?id='.$id.'"  class="border-0 ml-1 text-white bg-primary px-4 py-1 hover:bg-primary transition-all ease-in duration-200" type="button">
+Continue
+</a>';
+            } else {
+            }
+            ?>
+        </div>
     </td>
 </tr>

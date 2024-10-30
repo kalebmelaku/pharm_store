@@ -1,7 +1,8 @@
 <?php
 require './backend/db.php';
 require './backend/auth.php';
-
+$date = date('Y-m-d');
+$year = explode('-', $date)[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">

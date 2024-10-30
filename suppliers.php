@@ -59,10 +59,15 @@ $payStatus = @$rs['status']
 						<form class="bg-white text-dark dark:bg-boxdark mb-4 rounded flex flex-col" action="./suppliers.php" method="GET">
 							<div class="p-6.5">
 								<div class="text-center text-xl mb-2 dark:text-white text-black">Filter Search</div>
-								<div class=" flex flex-col gap-6 xl:flex-row">
+								<div class="flex mb-4 gap-4">
 									<div class="w-full xl:w-1/2">
 										<input placeholder="Invoice Number" name="invoice_no" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
 									</div>
+									<div class="w-full xl:w-1/2">
+										<input placeholder="Supplier Name" name="supplier_name" type="text" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+									</div>
+								</div>
+								<div class=" flex flex-col gap-6 xl:flex-row">
 									<div class="w-full">
 										<div class="flex justify-between align-center">
 											<div class="flex items-center gap-3 border p-2">
@@ -130,8 +135,10 @@ $payStatus = @$rs['status']
 					} else {
 						$invoice_no = $_GET['invoice_no'];
 						$checkPayment = $_GET['checkPayment'];
-
-						if (!empty($invoice_no)) {
+						$supplier_name = $_GET['supplier_name'];
+						if (!empty($supplier_name)) {
+							include './includes/suppliers_page/supplier_name.php';
+						} else if (!empty($invoice_no)) {
 							include './includes/suppliers_page/invoice_all.php';
 						} else if ($checkPayment == 'payed') {
 							include './includes/suppliers_page/payed.php';

@@ -35,6 +35,7 @@
 				$name = $row['name'];
 				$invoice_no = $row['invoice_no'];
 				$status = $row['status'];
+				$completed = $row['completed'];
 				$total = $row['total_amount'];
 				$date = $row['date'];
 				$pageName = '';

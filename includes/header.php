@@ -4,6 +4,9 @@
 					<div
 						class="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11"
 					>
+					<a href="./backend/exportTotal.php?page=general&year=<?php echo $year;?>" class="text-sm md:text-lg cursor-pointer rounded-lg bg-secondary py-1 px-6 font-medium text-white transition hover:bg-opacity-90">
+							Export
+						</a>
 						<div class="flex items-center gap-2 sm:gap-4 lg:hidden">
 							<!-- Hamburger Toggle BTN -->
 							<button

@@ -29,7 +29,7 @@
 
 								// retrieve selected results from database and display them on page
 								
-                                    $sql = $conn->query("SELECT * FROM `suppliers` WHERE `invoice_no` LIKE '%$invoice_no%'");
+                                    $sql = $conn->query("SELECT * FROM `suppliers` WHERE `invoice_no` LIKE '%$invoice_no%' AND `completed` = 1");
 									if ($sql->num_rows > 0) {
                                         while ($row = $sql->fetch_assoc()) {
                                             $id = $row['id'];

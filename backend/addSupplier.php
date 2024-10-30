@@ -56,6 +56,7 @@ if (isset($_POST['nextForm'])) {
             )");
 
             if($insert_meds){
+                $upd = $conn->query("UPDATE `suppliers` SET `completed` = 1 WHERE `invoice_no` = '$invoice_number'");
                 header("Location: ../suppliers.php?status=200&msg=Medicine Successfully Added");
             }
         }
