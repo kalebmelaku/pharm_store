@@ -48,28 +48,24 @@
         <div class="flex items-center justify-start">
             <span class="absolute top-[20%] left-0 px-2 py-1 text-xs font-bold uppercase lg:hidden">Actions</span>
             <?php
-            if ($status == 0) {
-
-                //   "delQueue(\''. $result['id']. '\')"
+            if ($completed == 0) {
+                echo '<a href="./backend/continueSupplier.php?id=' . $id . '"  class="border-0 text-white bg-primary px-4 py-1 hover:bg-primary transition-all ease-in duration-200" type="button">
+                    Continue
+                    </a>';
+                echo '<a href="./backend/cancelSupplier.php?id=' . $id . '"  class="border-0 ml-1 text-white bg-danger px-4 py-1 hover:bg-primary transition-all ease-in duration-200" type="button">
+                    Cancel
+                    </a>';
+            } else if ($status == 0) {
                 echo '<button onclick="modal(\'' . $invoice_no . '\', \'' . $name . '\', ' . $total . ')" data-modal-target="default-modal" data-modal-toggle="default-modal" class="mr-1 border-0 text-white bg-secondary px-4 py-1 hover:bg-primary transition-all ease-in duration-200" type="button">
-        Pay
-    </button>';
-            } else {
+                    Pay
+                </button>';
+                echo '<a href="./invoiceDetail.php?id=' . $invoice_no . '" class="border-0 text-white bg-secondary px-4 py-1 hover:bg-primary transition-all ease-in duration-200">Detail</a>';
             }
-
-            ?>
-
-            <a href="./invoiceDetail.php?id=<?php echo $invoice_no; ?>" class="border-0 text-white bg-secondary px-4 py-1 hover:bg-primary transition-all ease-in duration-200">Detail</a>
-            <?php
-            if (@$completed == 0) {
-
-                //   "delQueue(\''. $result['id']. '\')"
-                echo '<a href="./backend/continueSupplier.php?id='.$id.'"  class="border-0 ml-1 text-white bg-primary px-4 py-1 hover:bg-primary transition-all ease-in duration-200" type="button">
-Continue
-</a>';
-            } else {
+            if ($status == 1) {
+                echo '<a href="./invoiceDetail.php?id=' . $invoice_no . '" class="border-0 text-white bg-secondary px-4 py-1 hover:bg-primary transition-all ease-in duration-200">Detail</a>';
             }
             ?>
+
         </div>
     </td>
 </tr>
