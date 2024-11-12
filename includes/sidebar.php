@@ -96,21 +96,6 @@ $status = $rs['status'];
 						</a>
 					</li>
 				<?php endif; ?>
-				<!-- <li class="<?php if ($page == 'sell') {
-									echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
-								} else {
-									echo 'mb-4 w-full text-white hover:bg-graydark';
-								} ?>">
-					<a class="<?php if ($page == 'sell') {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-								} else {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-								} ?>" href="./pharmacy/">
-						<i class="fa-solid fa-prescription-bottle-medical"></i>
-						Sell
-
-					</a>
-				</li> -->
 				<li class="<?php if ($page == 'expired') {
 								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 							} else {
@@ -123,6 +108,21 @@ $status = $rs['status'];
 								} ?>" href="./expired.php">
 						<i class="fa-solid fa-calendar-xmark"></i>
 						Expiring Soon
+
+					</a>
+				</li>
+				<li class="<?php if ($page == 'exportReport') {
+								echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
+							} else {
+								echo 'mb-4 w-full text-white hover:bg-graydark';
+							} ?>">
+					<a class="<?php if ($page == 'exportReport') {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} else {
+									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
+								} ?>" href="./exportReport.php">
+						<i class="fa-solid fa-folder-open"></i>
+						Report
 
 					</a>
 				</li>
@@ -187,21 +187,7 @@ $status = $rs['status'];
 
 					</a>
 				</li>
-				<!-- <li class="<?php if ($page == 'unpaid') {
-									echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
-								} else {
-									echo 'mb-4 w-full text-white hover:bg-graydark';
-								} ?>">
-					<a class="<?php if ($page == 'unpaid') {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-								} else {
-									echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-								} ?>" href="./unpaid.php">
-						<i class="fa-solid fa-file-invoice"></i>
-						Unpaid
 
-					</a>
-				</li> -->
 				<li id="config-toggler" class="<?php if ($page == 'settings') {
 													echo 'mb-4 w-full bg-primary dark:bg-primary text-white bg-graydark';
 												} else {
@@ -222,17 +208,6 @@ $status = $rs['status'];
 							} else {
 								echo 'flex ml-4 flex-col hidden';
 							} ?>" id="configs">
-					<!-- <li class="mb-4 w-full text-white hover:bg-graydark">
-
-						<a class="<?php if ($page == 'settings') {
-										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-									} else {
-										echo 'group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-boxdark dark:text-bodydark1 duration-300 ease-in-out hover:bg-graydark hover:text-white dark:hover:bg-meta-4';
-									} ?>" href="./payments.php">
-							<i class="fa-solid fa-gear"></i>
-							Payments
-						</a>
-					</li> -->
 					<li class="<?php if ($page == 'settings' && $curr == 'password') {
 									echo 'mb-4 w-full bg-secondary dark:bg-secondary text-white bg-graydark';
 								} else {

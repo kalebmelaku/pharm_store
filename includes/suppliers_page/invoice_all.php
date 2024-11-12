@@ -39,7 +39,7 @@
 											$total = $row['total_amount'];
 											$date = $row['date'];
 											$pageName = '';
-                                            
+                                            $completed = $row['completed'];
 											include './includes/unpaid_table.php';
 										}
 									} else {
