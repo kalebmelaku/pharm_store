@@ -100,7 +100,7 @@ $year = explode('-', $date)[0];
                                     Suppliers Payment
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo $total_unpaid . " Birr"; ?>
+                                    <?php echo number_format($total_unpaid, 2, '.', ',') . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
@@ -117,7 +117,7 @@ $year = explode('-', $date)[0];
                                     Total Sell
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo $total_revenue ?? 0 . " Birr"; ?>
+                                    <?php echo number_format($total_revenue, 2, '.', ',') ?? 0 . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
@@ -134,7 +134,7 @@ $year = explode('-', $date)[0];
                                     Total Expense
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo $total_cost ?? 0 . " Birr"; ?>
+                                    <?php echo number_format($total_cost, 2, '.', ',') ?? 0 . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
@@ -151,7 +151,7 @@ $year = explode('-', $date)[0];
                                     Net Sell
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo $profit ?? 0 . " Birr"; ?>
+                                    <?php echo number_format($profit, 2, '.', ',') ?? 0 . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
