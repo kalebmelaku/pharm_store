@@ -1,9 +1,9 @@
 <?php
 require './backend/db.php';
 require './backend/auth.php';
-$sql2 = $conn->query("DELETE FROM `pharmacy_sale` WHERE `quan` = 0");
-$sql3 = $conn->query("DELETE FROM `pharm_store` WHERE `amount` = 0");
-$sql3 = $conn->query("DELETE FROM `medicines` WHERE `amount` = 0");
+// $sql2 = $conn->query("DELETE FROM `pharmacy_sale` WHERE `quan` = 0");
+// $sql3 = $conn->query("DELETE FROM `pharm_store` WHERE `amount` = 0");
+// $sql3 = $conn->query("DELETE FROM `medicines` WHERE `amount` = 0");
 ?>
 <!DOCTYPE html>
 <html lang="en">
