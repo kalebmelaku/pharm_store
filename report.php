@@ -117,7 +117,7 @@ $year = explode('-', $date)[0];
                                     Total Sell
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo number_format($total_revenue, 2, '.', ',') ?? 0 . " Birr"; ?>
+                                    <?php echo number_format(@$total_revenue, 2, '.', ',') ?? 0 . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
@@ -134,7 +134,7 @@ $year = explode('-', $date)[0];
                                     Total Expense
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo number_format($total_cost, 2, '.', ',') ?? 0 . " Birr"; ?>
+                                    <?php echo number_format(@$total_cost, 2, '.', ',') ?? 0 . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
@@ -151,7 +151,7 @@ $year = explode('-', $date)[0];
                                     Net Sell
                                 </h4>
                                 <span class="text-lg dark:text-white font-bold">
-                                    <?php echo number_format($profit, 2, '.', ',') ?? 0 . " Birr"; ?>
+                                    <?php echo number_format(@$profit, 2, '.', ',') ?? 0 . " Birr"; ?>
                                 </span>
                             </div>
                         </div>
@@ -370,7 +370,7 @@ ORDER BY
                         profit.classList.add('text-meta-3')
 
                         monthName.textContent = month.month
-                        profit.textContent = month.profit + ' Birr'
+                        profit.textContent = formatCurrency(month.profit) + ' Birr'
 
                         monthNameContainer.appendChild(monthName);
                         profitContainer.appendChild(profit);
@@ -379,6 +379,13 @@ ORDER BY
                         monthContainer.appendChild(container);
                     })
                 })
+        }
+
+        function formatCurrency(totalCost) {
+            return new Intl.NumberFormat('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format(totalCost);
         }
     </script>
 </body>

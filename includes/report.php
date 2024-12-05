@@ -19,9 +19,9 @@ ORDER BY
 
 ");
 while ($row = $result->fetch_assoc()) {
-    $profit = $row['profit'];
-    $total_cost = $row['purchase_price'];
-    $total_revenue = $row['cost_price'];
+    $profit = $row['profit'] ?? 0;
+    $total_cost = $row['purchase_price'] ?? 0;
+    $total_revenue = $row['cost_price'] ?? 0;
 }
 //sell profit
 // $selectSale = $conn->query("SELECT * FROM `cash_payment_pharm` WHERE MONTH(`date`) = '$month_num' AND YEAR(`date`) = $year");
