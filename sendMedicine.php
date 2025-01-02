@@ -5,7 +5,7 @@ $id = $_GET['id'];
 if (empty($id)) {
     header("Location: ./home.php");
 }
-$sql = $conn->query("SELECT * FROM `pharm_store` WHERE `id` = '$id'");
+$sql = $conn->query("SELECT * FROM `pharm_store` WHERE `id` = '$id' AND `amount` != 0");
 
 while ($row = $sql->fetch_assoc()) {
     $med_name = $row['name'];

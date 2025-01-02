@@ -174,6 +174,9 @@ $year = explode('-', $date)[0];
                                 </canvas>
                                 <?php
                                 $year = explode("-", date('Y-m-d'))[0];
+                                if(isset($_GET['search'])){
+                                    $year = explode("-", $_GET['date'])[0];
+                                }
                                 $query = $conn->query("
                                 SELECT
     MONTHNAME(s.date) AS month,
@@ -211,7 +214,7 @@ ORDER BY
                                             Total:
                                         </h4>
                                     </div>
-                                    <select name="selectYear" id="selectYear" class="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none" onchange="fetchMonths()">
+                                    <select name="selectYear" id="selectYear" class="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none">
                                         <option value="" selected default disabled> Please Select Year</option>
                                     </select>
                                 </div>
@@ -318,32 +321,45 @@ ORDER BY
             fetch('https://www.store.drhibistpedriatician.com/api/getYears.php')
                 .then(response => response.json())
                 .then(data => {
-                    let yearDropDown = document.getElementById('selectYear')
-                    // yearDropDown.innerHTML = '<option value="" selected default disabled>Please Select Year</option>';
+                    let yearDropDown = document.getElementById('selectYear');
+                    yearDropDown.innerHTML = '<option value="" disabled selected>Please Select Year</option>';
+
+                    // Populate the dropdown
                     data.forEach(year => {
                         const option = document.createElement('option');
-                        option.value = year;
+                        option.value = year; // Ensure the value is properly set
                         option.textContent = year;
                         yearDropDown.appendChild(option);
-                    })
-                    let selectedYear = document.getElementById('selectYear').value;
-                    if (!selectedYear) {
-                        selectedYear = new Date().getFullYear();
-                        yearDropDown.value = selectedYear
-                    }
-                    fetchMonths(selectedYear)
+                    });
+
+                    // Default selection to the current year
+                    const currentYear = new Date().getFullYear();
+                    yearDropDown.value = currentYear;
+
+                    // Fetch data for the default year
+                    fetchMonths(currentYear);
+
+                    // Attach event listener AFTER populating the dropdown
+                    yearDropDown.addEventListener('change', () => {
+                        const selectedYear = yearDropDown.value; // Get selected value
+                        console.log('Selected Year:', selectedYear); // Debug log
+                        fetchMonths(selectedYear); // Fetch months for the selected year
+                    });
                 })
-                .catch(error => console.log(error))
+                .catch(error => console.log("Error fetching years:", error));
         }
+
 
         function fetchMonths(selectedYear) {
             let year = document.getElementById('selectYear');
-            year.value = selectedYear
+            year.value = selectedYear;
+
             fetch(`https://www.store.drhibistpedriatician.com/api/testing.php?year=${year.value}`)
                 .then(response => response.json())
                 .then(data => {
-                    let monthContainer = document.getElementById('monthContainer')
-                    monthContainer.innerHTML = ''
+                    let monthContainer = document.getElementById('monthContainer');
+                    monthContainer.innerHTML = ''; // Clear previous data
+
                     data.forEach((month) => {
                         const container = document.createElement('div');
                         const monthNameContainer = document.createElement('div');
@@ -351,35 +367,25 @@ ORDER BY
                         const profitContainer = document.createElement('div');
                         const profit = document.createElement('p');
 
-                        container.classList.add('border-b')
-                        container.classList.add('border-stroke')
-                        container.classList.add('dark:border-strokedark')
-                        container.classList.add('flex')
-                        container.classList.add('items-center')
-                        container.classList.add('justify-between')
+                        container.classList.add('border-b', 'border-stroke', 'dark:border-strokedark', 'flex', 'items-center', 'justify-between');
+                        monthNameContainer.classList.add('p-2.5', 'xl:p-5');
+                        profitContainer.classList.add('p-2.5', 'xl:p-5');
+                        monthName.classList.add('font-medium', 'text-black', 'dark:text-white');
+                        profit.classList.add('font-medium', 'text-meta-3');
 
-                        monthNameContainer.classList.add('p-2.5')
-                        monthNameContainer.classList.add('xl:p-5')
-                        profitContainer.classList.add('p-2.5')
-                        profitContainer.classList.add('xl:p-5')
-
-                        monthName.classList.add('font-medium')
-                        monthName.classList.add('text-black')
-                        monthName.classList.add('dark:text-white')
-                        profit.classList.add('font-medium')
-                        profit.classList.add('text-meta-3')
-
-                        monthName.textContent = month.month
-                        profit.textContent = formatCurrency(month.profit) + ' Birr'
+                        monthName.textContent = month.month;
+                        profit.textContent = formatCurrency(month.profit) + ' Birr';
 
                         monthNameContainer.appendChild(monthName);
                         profitContainer.appendChild(profit);
                         container.appendChild(monthNameContainer);
                         container.appendChild(profitContainer);
                         monthContainer.appendChild(container);
-                    })
+                    });
                 })
+                .catch(error => console.log("Error fetching months:", error));
         }
+
 
         function formatCurrency(totalCost) {
             return new Intl.NumberFormat('en-US', {

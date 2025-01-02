@@ -58,7 +58,7 @@ require './backend/auth.php';
 						<tbody class="dark:bg-black dark:text-white " id="tbody">
 							<?php
 							$results_per_page = 15;
-							$sql = "SELECT * FROM `pharm_store` WHERE `exdate` <= DATE_ADD(CURDATE(), INTERVAL 1 MONTH) ";
+							$sql = "SELECT * FROM `pharm_store` WHERE `exdate` <= DATE_ADD(CURDATE(), INTERVAL 1 MONTH) AND `amount` != 0 ";
 							$result = mysqli_query($conn, $sql);
 
 							$number_of_results = mysqli_num_rows($result);
@@ -71,7 +71,7 @@ require './backend/auth.php';
 
 
 							$this_page_first_result = ($page - 1) * $results_per_page;
-							$sql = $conn->query("SELECT *, DATEDIFF(`exdate`, CURDATE()) AS days_remaining FROM `pharm_store` WHERE `exdate` <= DATE_ADD(CURDATE(), INTERVAL 1 MONTH) ORDER BY exdate ASC LIMIT $this_page_first_result , $results_per_page");
+							$sql = $conn->query("SELECT *, DATEDIFF(`exdate`, CURDATE()) AS days_remaining FROM `pharm_store` WHERE `exdate` <= DATE_ADD(CURDATE(), INTERVAL 1 MONTH) AND `amount` != 0 ORDER BY exdate ASC LIMIT $this_page_first_result , $results_per_page");
 
 							while ($row = $sql->fetch_assoc()) {
 								$id = $row['id'];

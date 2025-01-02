@@ -73,7 +73,7 @@ require './backend/auth.php';
 					$search_result = 1;
 					$search = $_GET['search'] ?? '';
 					// find out the number of results stored in database
-					$sql = 'SELECT * FROM `pharm_store` ';
+					$sql = 'SELECT * FROM `pharm_store` WHERE `amount` != 0';
 					$result = mysqli_query($conn, $sql);
 					$number_of_results = mysqli_num_rows($result);
 
@@ -124,7 +124,7 @@ require './backend/auth.php';
 
 							// retrieve selected results from database and display them on page
 							if (empty($search)) {
-								$sql = $conn->query('SELECT * FROM `pharm_store` ORDER BY `name` ASC LIMIT ' . $this_page_first_result . ',' . $results_per_page);
+								$sql = $conn->query('SELECT * FROM `pharm_store` WHERE `amount` != 0 ORDER BY `name` ASC LIMIT ' . $this_page_first_result . ',' . $results_per_page);
 								while ($row = $sql->fetch_assoc()) {
 									$id = $row['id'];
 									$name = $row['name'];
@@ -138,7 +138,7 @@ require './backend/auth.php';
 									include './includes/table_row.php';
 								}
 							} else {
-								$sql = $conn->query("SELECT * FROM `pharm_store` WHERE `name` LIKE '%$search%' ORDER BY `name` ASC");
+								$sql = $conn->query("SELECT * FROM `pharm_store` WHERE `name` LIKE '%$search%' AND `amount` != 0 ORDER BY `name` ASC");
 								if ($sql->num_rows > 0) {
 									while ($row = $sql->fetch_assoc()) {
 										$id = $row['id'];

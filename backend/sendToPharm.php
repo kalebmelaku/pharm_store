@@ -5,7 +5,7 @@ if (isset($_POST['send'])) {
     $amount = $_POST['amount'];
     $sellPrice = $_POST['price'];
 
-    $fetchMed = $conn->query("SELECT * FROM `pharm_store` WHERE `id` = '$medid'");
+    $fetchMed = $conn->query("SELECT * FROM `pharm_store` WHERE `id` = '$medid' AND `amount` != 0");
     while ($row = $fetchMed->fetch_assoc()) {
         $name = $row['name'];
         $type = $row['type'];
